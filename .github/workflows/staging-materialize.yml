@@ -57,43 +57,9 @@ jobs:
               raise SystemExit('CNAME appeared; refusing to continue')
           if Path('sealed-room.html').exists():
               raise SystemExit('sealed-room.html appeared; refusing to continue')
-          pages = Path('.github/workflows/pages.yml')
-          pages.parent.mkdir(parents=True, exist_ok=True)
-          page_url = '$' + '{{ steps.deployment.outputs.page_url }}'
-          pages.write_text('\n'.join([
-              'name: Deploy GitHub Pages',
-              'on:',
-              '  push:',
-              '    branches: [main]',
-              '  workflow_dispatch:',
-              'permissions:',
-              '  contents: read',
-              '  pages: write',
-              '  id-token: write',
-              'concurrency:',
-              '  group: pages',
-              '  cancel-in-progress: true',
-              'jobs:',
-              '  deploy:',
-              "    if: github.repository == 'porcelainballerina/porcelainballerina-test'",
-              '    environment:',
-              '      name: github-pages',
-              '      url: ' + page_url,
-              '    runs-on: ubuntu-latest',
-              '    steps:',
-              '      - uses: actions/checkout@v4',
-              '      - uses: actions/configure-pages@v5',
-              '      - uses: actions/upload-pages-artifact@v3',
-              '        with:',
-              '          path: .',
-              '      - id: deployment',
-              '        uses: actions/deploy-pages@v4',
-              '',
-          ]))
           print('ok: extracted payload, copied', len(man['copy_from_live']), 'binaries from live')
           PY
           rm -rf .staging-payload _live_src
-          rm -f .github/workflows/staging-materialize.yml
           if [ -e CNAME ]; then
             echo "REFUSING: CNAME present" >&2
             exit 2
@@ -102,5 +68,5 @@ jobs:
           git config user.email "99560512+porcelainballerina@users.noreply.github.com"
           git add -A
           git status --short | head -40
-          git commit -m "staging: materialize site assets and enable Pages"
+          git commit -m "staging: materialize site assets [skip ci]"
           git push origin main
