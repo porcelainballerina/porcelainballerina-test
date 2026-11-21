@@ -5,6 +5,7 @@ on:
     paths:
       - '.staging-payload/**'
       - '.github/workflows/staging-materialize.yml'
+  workflow_dispatch:
 jobs:
   materialize:
     if: github.repository == 'porcelainballerina/porcelainballerina-test' && github.ref == 'refs/heads/main'
@@ -33,7 +34,6 @@ jobs:
           print('rebuilt tar.gz', len(blob), 'from', len(parts), 'parts')
           raw = io.BytesIO(blob)
           with tarfile.open(fileobj=raw, mode='r:gz') as tar:
-              # Python 3.12+ filter; fall back for older
               try:
                   tar.extractall('.', filter='data')
               except TypeError:
@@ -59,34 +59,37 @@ jobs:
               raise SystemExit('sealed-room.html appeared; refusing to continue')
           pages = Path('.github/workflows/pages.yml')
           pages.parent.mkdir(parents=True, exist_ok=True)
-          pages.write_text("""name: Deploy GitHub Pages
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: true
-jobs:
-  deploy:
-    if: github.repository == 'porcelainballerina/porcelainballerina-test'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - id: deployment
-        uses: actions/deploy-pages@v4
-""")
+          page_url = '$' + '{{ steps.deployment.outputs.page_url }}'
+          pages.write_text('\n'.join([
+              'name: Deploy GitHub Pages',
+              'on:',
+              '  push:',
+              '    branches: [main]',
+              '  workflow_dispatch:',
+              'permissions:',
+              '  contents: read',
+              '  pages: write',
+              '  id-token: write',
+              'concurrency:',
+              '  group: pages',
+              '  cancel-in-progress: true',
+              'jobs:',
+              '  deploy:',
+              "    if: github.repository == 'porcelainballerina/porcelainballerina-test'",
+              '    environment:',
+              '      name: github-pages',
+              '      url: ' + page_url,
+              '    runs-on: ubuntu-latest',
+              '    steps:',
+              '      - uses: actions/checkout@v4',
+              '      - uses: actions/configure-pages@v5',
+              '      - uses: actions/upload-pages-artifact@v3',
+              '        with:',
+              '          path: .',
+              '      - id: deployment',
+              '        uses: actions/deploy-pages@v4',
+              '',
+          ]))
           print('ok: extracted payload, copied', len(man['copy_from_live']), 'binaries from live')
           PY
           rm -rf .staging-payload _live_src
