@@ -1,0 +1,103 @@
+name: Materialize staging assets
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.staging-payload/**'
+      - '.github/workflows/staging-materialize.yml'
+jobs:
+  materialize:
+    if: github.repository == 'porcelainballerina/porcelainballerina-test' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: porcelainballerina/porcelainballerina-site
+          path: _live_src
+          persist-credentials: false
+      - name: Unpack payload, copy live binaries, install Pages workflow
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, base64, tarfile, shutil, io, sys
+          from pathlib import Path
+
+          payload = Path('.staging-payload')
+          parts = sorted(payload.glob('staging-site.tar.gz.part*.b64'))
+          if not parts:
+              raise SystemExit('no archive parts')
+          blob = b''.join(base64.b64decode(p.read_text().strip()) for p in parts)
+          print('rebuilt tar.gz', len(blob), 'from', len(parts), 'parts')
+          raw = io.BytesIO(blob)
+          with tarfile.open(fileobj=raw, mode='r:gz') as tar:
+              # Python 3.12+ filter; fall back for older
+              try:
+                  tar.extractall('.', filter='data')
+              except TypeError:
+                  tar.extractall('.')
+          man = json.loads((payload / 'manifest.json').read_text())
+          live = Path('_live_src')
+          missing = []
+          for rel in man['copy_from_live']:
+              src = live / rel
+              dest = Path(rel)
+              if not src.is_file():
+                  missing.append(rel)
+                  continue
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(src, dest)
+          if missing:
+              print('MISSING FROM LIVE', len(missing))
+              print('\n'.join(missing[:80]))
+              sys.exit(1)
+          if Path('CNAME').exists():
+              raise SystemExit('CNAME appeared; refusing to continue')
+          if Path('sealed-room.html').exists():
+              raise SystemExit('sealed-room.html appeared; refusing to continue')
+          pages = Path('.github/workflows/pages.yml')
+          pages.parent.mkdir(parents=True, exist_ok=True)
+          pages.write_text("""name: Deploy GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    if: github.repository == 'porcelainballerina/porcelainballerina-test'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
+""")
+          print('ok: extracted payload, copied', len(man['copy_from_live']), 'binaries from live')
+          PY
+          rm -rf .staging-payload _live_src
+          rm -f .github/workflows/staging-materialize.yml
+          if [ -e CNAME ]; then
+            echo "REFUSING: CNAME present" >&2
+            exit 2
+          fi
+          git config user.name "porcelainballerina"
+          git config user.email "99560512+porcelainballerina@users.noreply.github.com"
+          git add -A
+          git status --short | head -40
+          git commit -m "staging: materialize site assets and enable Pages"
+          git push origin main
