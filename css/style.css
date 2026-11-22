@@ -7475,29 +7475,35 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .pb-wg .wg-sheet.wg-d::after{content:"";position:absolute;z-index:-1;pointer-events:none;top:calc(var(--bwy)*-1);bottom:calc(var(--bwy)*-1);left:calc(var(--bwx)*-1);right:calc(var(--bwx)*-1);border-style:solid;border-width:var(--bwy) var(--bwx);border-image:var(--sheet) 150 104 / var(--bwy) var(--bwx) stretch round}
 .pb-wg .wg-sheet.wg-d::before{content:"";position:absolute;z-index:-2;top:calc(var(--bwy)*-.4);bottom:calc(var(--bwy)*-.4);left:calc(var(--bwx)*-.4);right:calc(var(--bwx)*-.4);background:var(--vellum) center top/560px;box-shadow:inset 0 0 calc(var(--bwx)*.9) calc(var(--bwx)*.25) rgba(120,78,32,.38)}
 .pb-wg .wg-d .wg-crease{position:absolute;inset:-1px;pointer-events:none;background:linear-gradient(180deg,transparent calc(33.3% - 2px),rgba(70,40,15,.20) calc(33.3% - 1px),rgba(255,245,220,.25) 33.3%,transparent calc(33.3% + 3px)),linear-gradient(180deg,transparent calc(66.6% - 2px),rgba(70,40,15,.18) calc(66.6% - 1px),rgba(255,245,220,.22) 66.6%,transparent calc(66.6% + 3px)),linear-gradient(90deg,transparent calc(50% - 1px),rgba(70,40,15,.13) 50%,rgba(255,245,220,.18) calc(50% + 1px),transparent calc(50% + 3px));mix-blend-mode:multiply}
-.pb-wg .wg-d .pw-title{position:relative;margin:0 0 1.1rem!important;padding:0!important;text-align:center;font:400 clamp(1.9rem,5vw,2.9rem)/1.05 "Unifraktur","Grenze Gotisch",serif!important;color:#4b0b06!important;letter-spacing:.01em;text-shadow:0 0 1px rgba(75,11,6,.6),0 0 4px rgba(90,20,5,.18)}
-.pb-wg .wg-d .pw-title::after{content:"";display:block;width:min(240px,60%);height:9px;margin:.8rem auto 0;background:radial-gradient(circle,#4b0b06 0 2.5px,transparent 3px) center/9px 9px no-repeat,linear-gradient(90deg,transparent,rgba(75,11,6,.75) 20%,rgba(75,11,6,.75) 44%,transparent 46%,transparent 54%,rgba(75,11,6,.75) 56%,rgba(75,11,6,.75) 80%,transparent) center/100% 1px no-repeat}
+.pb-wg .wg-ink-defs{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.pb-wg .wg-d .pw-title{position:relative;margin:0 0 1.1rem!important;padding:0!important;text-align:center;font:400 clamp(2.05rem,5.4vw,3.05rem)/1.15 "Pinyon Script","PB Hand",cursive!important;color:#2a1810!important;letter-spacing:.01em;text-shadow:.35px .45px .7px rgba(40,22,12,.38),0 0 .45px rgba(22,12,8,.55);filter:url(#wgGall);clip-path:inset(-.25em 100% -.25em -.3em)}
+.pb-wg .wg-sheet.is-unfold .pw-title,.pb-wg .wg-sheet.is-inking .pw-title{animation:wgQuillLine 1.25s cubic-bezier(.18,.7,.2,1) forwards}
+.pb-wg .wg-sheet.is-inked .pw-title{animation:none;clip-path:none}
+.pb-wg .wg-d .pw-title::after{content:"";display:block;width:min(240px,60%);height:9px;margin:.8rem auto 0;background:radial-gradient(circle,#2a1810 0 2.5px,transparent 3px) center/9px 9px no-repeat,linear-gradient(90deg,transparent,rgba(42,24,16,.8) 20%,rgba(42,24,16,.8) 44%,transparent 46%,transparent 54%,rgba(42,24,16,.8) 56%,rgba(42,24,16,.8) 80%,transparent) center/100% 1px no-repeat}
 .pb-wg .wg-d .pw-text{max-width:33em;margin:0 auto}
-.pb-wg .wg-d .wg-short.pw-st{margin:0!important;font:400 clamp(1.04rem,2.6vw,1.17rem)/1.62 "Fell","Garamond",Georgia,serif!important;color:#21120a!important;text-shadow:0 0 .6px rgba(33,18,10,.75),0 0 2.5px rgba(70,25,5,.16)}
-.pb-wg .wg-d .wg-short .pw-l{display:block;margin:0 0 .5em;padding-left:0;text-indent:0}
-.pb-wg .wg-d .wg-short .pw-l:first-of-type{font:400 clamp(2.1rem,6vw,2.8rem)/1 "Unifraktur",serif;color:#5a0d07;text-align:left;margin:0 0 .35em;letter-spacing:.02em}
-.pb-wg .wg-d .wg-short .pw-l:nth-of-type(2){font-style:italic;color:#3a1a0c}
+.pb-wg .wg-d .wg-short.pw-st{margin:0!important;font:400 clamp(1.12rem,2.7vw,1.28rem)/1.66 "PB Hand","Fondamento",cursive!important;color:#2a1810!important;text-shadow:.3px .35px .55px rgba(40,22,12,.32),0 0 .4px rgba(22,12,8,.5);filter:url(#wgGall)}
+.pb-wg .wg-d .wg-short .pw-l{display:block;margin:0 0 .55em;padding-left:0;text-indent:0}
+.pb-wg .wg-d .wg-short .pw-l:first-of-type{font:400 clamp(1.35rem,3.4vw,1.7rem)/1.2 "PB Hand","Fondamento",cursive;color:#24150e;text-align:left;margin:0 0 .45em;letter-spacing:.01em}
+.pb-wg .wg-d .wg-short .pw-l:nth-of-type(2){font-style:normal;color:#2a1810}
 .pb-wg .wg-d .wg-short .pw-l:nth-of-type(4){clear:left}
-.pb-wg .wg-d .wg-short .pw-l:nth-of-type(3)::first-letter{float:left;font:400 3.3em/.8 "Unifraktur",serif;color:#6a0f08;margin:.06em .1em 0 0;text-shadow:0 0 1px rgba(106,15,8,.6)}
-.pb-wg .wg-d .wg-short .pw-beat{font:400 1.06em/1.4 "Fell SC",serif;letter-spacing:.22em;color:#5a0d07;text-align:center;margin:.9em 0}
+.pb-wg .wg-d .wg-short .pw-l:nth-of-type(3)::first-letter{float:none;font:inherit;color:inherit;margin:0;text-shadow:inherit}
+.pb-wg .wg-d .wg-short .pw-beat{font:400 1.08em/1.45 "PB Hand","Fondamento",cursive;letter-spacing:.04em;color:#24150e;text-align:center;margin:.85em 0}
 .pb-wg .wg-d .wg-short .pw-l:first-of-type.pw-beat{text-align:left;letter-spacing:.02em}
-.pb-wg .wg-d .wg-short .pw-last{font-style:italic;color:#4b0b06;font-size:1.08em;margin-top:.9em}
-.pb-wg .wg-d .wg-ink .pw-l{opacity:0}
-.pb-wg .wg-d .wg-ink.is-inking .pw-l{animation:wgInk 1.1s cubic-bezier(.25,.6,.25,1) both;animation-delay:calc(var(--i,0)*.56s)}
-.pb-wg .wg-d .wg-ink.is-inked .pw-l{animation:none;opacity:1}
-@keyframes wgInk{0%{opacity:0;filter:blur(3px);color:#3a0d06}45%{opacity:.85;filter:blur(.8px)}100%{opacity:1;filter:none}}
+.pb-wg .wg-d .wg-short .pw-last{font-style:normal;color:#24150e;font-size:1.06em;margin-top:.9em}
+.pb-wg .wg-d .wg-ink .pw-l{opacity:1;clip-path:inset(-.2em 100% -.25em -.25em)}
+.pb-wg .wg-d .wg-ink.is-inking .pw-l{animation:wgQuillBlock 1.3s cubic-bezier(.18,.7,.2,1) both;animation-delay:calc(.35s + var(--i,0)*.6s)}
+.pb-wg .wg-d .wg-ink.is-inked .pw-l{animation:none;clip-path:none;opacity:1}
+@keyframes wgQuillLine{0%{clip-path:inset(-.25em 100% -.25em -.3em)}100%{clip-path:inset(-.25em 0 -.25em -.3em)}}
+@keyframes wgQuillBlock{0%{clip-path:inset(-.2em -.3em 100% -.3em)}100%{clip-path:inset(-.2em -.3em -.25em -.3em)}}
+.pb-wg .wg-d .wg-full .pw-st{font-family:"PB Hand","Fondamento",cursive!important;font-style:normal;color:#2a1810;text-shadow:.3px .35px .55px rgba(40,22,12,.32),0 0 .4px rgba(22,12,8,.5);filter:url(#wgGall)}
+.pb-wg .wg-d .pw-sig{font-family:"Pinyon Script","PB Hand",cursive!important;font-style:normal;color:#24150e!important;filter:url(#wgGall)}
+.pb-wg .wg-d .wg-signhere{color:#24150e;font-family:"PB Hand","Fondamento",cursive}
+.pb-wg .wg-d .wg-label{color:#2a1810;font:400 1.1rem/1.5 "PB Hand","Fondamento",cursive}
 .pb-wg .wg-d .wg-after[hidden]{display:none}
 .pb-wg.is-read .wg-d .wg-after{animation:wgRise 1.2s ease-out both}
 @keyframes wgRise{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
 .pb-wg .wg-d .wg-more{margin:1.2rem 0 0!important}
 .pb-wg .wg-d .wg-full-link{font:italic 1rem "Fell",serif;color:#4b0b06}
-.pb-wg .wg-d .wg-signhere{color:#5a0d07}
-.pb-wg .wg-d .wg-label{color:#21120a;font:italic 1.08rem/1.5 "Fell",Georgia,serif}
 .pb-wg .wg-d .wg-wax{border:1px dashed rgba(75,11,6,.7)}
 .pb-wg .wg-d .wg-wax::after{background:var(--seal) center/contain no-repeat;inset:-9px}
 .pb-wg .wg-d .wg-check:checked+.wg-label .wg-words{color:#4b0b06}
@@ -7505,13 +7511,12 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .pb-wg .wg-d .wg-enter{background:linear-gradient(180deg,#3a0905,#1c0302)!important;border:1px solid rgba(120,30,15,.8)!important;color:#d9c08f!important;font:400 .95rem/1 "Fell SC",serif!important;letter-spacing:.42em!important;box-shadow:inset 0 0 12px rgba(0,0,0,.6),0 2px 8px rgba(0,0,0,.4)!important}
 .pb-wg .wg-d .wg-enter::before,.pb-wg .wg-d .wg-enter::after{display:none!important}
 .pb-wg .wg-d .wg-hint{font:italic .92rem/1.4 "Fell",serif;color:rgba(40,20,8,.75)}
-.pb-wg .wg-d .wg-full .pw-st{font-family:"Fell",serif!important;font-style:italic}
 .pb-wg .wg-sheet.is-unfold{transform-origin:50% 0;animation:wgUnfold 1.5s cubic-bezier(.22,.7,.2,1) both}
 .pb-wg .wg-sheet.is-unfold .wg-crease{animation:wgCrease 2.4s ease-out both}
 @keyframes wgUnfold{0%{opacity:0;transform:perspective(1400px) translateY(30px) rotateX(-78deg) scaleY(.34);filter:brightness(.5) drop-shadow(0 30px 40px rgba(0,0,0,.9))}50%{opacity:1}100%{opacity:1;transform:none}}
 @keyframes wgCrease{0%{opacity:1;filter:contrast(2.4)}100%{opacity:1;filter:none}}
 @media (max-width:699px){.pb-wg .wg-kicker{letter-spacing:.24em;font-size:.74rem}.pb-wg .wg-sheet.wg-d{--bwy:54px;--bwx:26px;padding:.3rem .2rem}.wg-env-to{left:13%;right:54%;top:14%}.pb-wg .wg-d .wg-short .pw-l:nth-of-type(3)::first-letter{font-size:3em}}
-@media (prefers-reduced-motion:reduce){.pb-wg .wg-bg,.pb-wg .wg-flame,.wg-cta{animation:none!important;opacity:1}.wg-env{transition:none}.pb-wg .wg-d .wg-ink .pw-l{opacity:1;animation:none!important}.pb-wg .wg-sheet.is-unfold,.pb-wg .wg-sheet.is-unfold .wg-crease,.pb-wg.is-read .wg-after{animation:none}}
+@media (prefers-reduced-motion:reduce){.pb-wg .wg-bg,.pb-wg .wg-flame,.wg-cta{animation:none!important;opacity:1}.wg-env{transition:none}.pb-wg .wg-d .wg-ink .pw-l,.pb-wg .wg-d .pw-title{opacity:1;animation:none!important;clip-path:none}.pb-wg .wg-sheet.is-unfold,.pb-wg .wg-sheet.is-unfold .wg-crease,.pb-wg.is-read .wg-after{animation:none}}
 /* ---- /gate D ---- */
 
 /* ink glyphs on the closed packet */
@@ -7789,8 +7794,13 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-lib[data-lib="mid-her"] .wg-book-ink{opacity:0;transition:none}
 .pb-wg.is-returning .wg-scroll{opacity:0;pointer-events:none;transition:opacity .7s ease}
 .pb-wg.is-returning .wg-hot{outline:none;visibility:hidden;pointer-events:none}
+
+.wg-book-ink .wg-write{transform:scaleX(0);transform-box:fill-box;transform-origin:left center}
+.wg-book-ink.is-shown .wg-write{animation:wgQuillWrite 1.15s cubic-bezier(.18,.7,.2,1) forwards;animation-delay:calc(var(--i,0)*.48s)}
+@keyframes wgQuillWrite{to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:reduce){
   .wg-p01,.wg-p02,.wg-p03,.wg-p04,.wg-p05,.wg-p06,.wg-p07,.wg-book-ink,.wg-lib-hint{transition:none!important}
+  .wg-book-ink .wg-write,.wg-book-ink.is-shown .wg-write{animation:none!important;transform:none}
   .wg-lib[data-lib="dolly"] .wg-p01,.wg-lib[data-lib="approach"] .wg-p01,
   .wg-lib[data-lib="to-her"] .wg-p05,.wg-lib[data-lib="near"] .wg-p06,.wg-lib[data-lib="near"] .wg-p07{transform:none}
   .wg-lib[data-lib="closing"] .wg-lib-stage,

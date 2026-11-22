@@ -19,7 +19,7 @@
     .join('<span class="pw-orn" aria-hidden="true">&#10022;</span>');
   const gateLines = GATE.filter(l => l !== '\u2014 M.A.');
   const short = '<p class="pw-st wg-short">' + gateLines.map(l => line(l, true)).join('<br>') + '</p>';
-  const INK_STEP = 560, INK_DUR = 1100;
+  const INK_STEP = 600, INK_DUR = 1300;
   const fullHref = new URL('../gallery.html#warning', SELF).href;
   const d = document.createElement('div');
   d.className = 'pb-wg';
@@ -28,7 +28,22 @@
   const img = new URL('../images/gate/', SELF).href;
   const lib = new URL('../images/gate-library/', SELF).href;
   d.setAttribute('style', `--alt:url('${img}altar-wide.webp');--alt-sm:url('${img}altar-wide-sm.webp');--alt-t:url('${img}altar-tall.webp');--circ:url('${img}circle.jpg');--circ-sm:url('${img}circle-sm.jpg');--corner:url('${img}corner.jpg')`);
-  const tpl = `<div class="wg-lib" data-lib="far">
+  const tpl = `<svg class="wg-ink-defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <filter id="wgGall" x="-8%" y="-40%" width="116%" height="180%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035 0.65" numOctaves="3" seed="11" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="0.9" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.05 0.2" numOctaves="2" seed="19" result="n2"/>
+      <feDisplacementMap in="wobble" in2="n2" scale="0.35" xChannelSelector="G" yChannelSelector="R" result="edge"/>
+      <feGaussianBlur in="edge" stdDeviation="0.28" result="bleed"/>
+      <feMorphology in="edge" operator="dilate" radius="0.3" result="fat"/>
+      <feGaussianBlur in="fat" stdDeviation="0.45" result="pool"/>
+      <feColorMatrix in="pool" type="matrix" values="0.55 0 0 0 0.02  0 0.32 0 0 0.01  0 0 0.16 0 0  0 0 0 0.28 0" result="pooldark"/>
+      <feBlend in="edge" in2="pooldark" mode="multiply" result="ink1"/>
+      <feBlend in="ink1" in2="bleed" mode="multiply"/>
+    </filter>
+  </defs>
+</svg><div class="wg-lib" data-lib="far">
     <div class="wg-lib-stage">
       <img class="wg-plate wg-p01" src="${lib}01-distance-closed.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high">
       <img class="wg-plate wg-p02" src="${lib}02-approach.webp" alt="" width="1920" height="1080" decoding="async">
@@ -40,32 +55,66 @@
       <svg class="wg-book-ink" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <defs>
     <linearGradient id="wgInkL" gradientUnits="userSpaceOnUse" x1="624" y1="0" x2="898" y2="0">
-      <stop offset="0" stop-color="#3a1c12"/>
-      <stop offset="0.7" stop-color="#24100a"/>
-      <stop offset="1" stop-color="#160a08"/>
+      <stop offset="0" stop-color="#4a2e1c"/>
+      <stop offset="0.35" stop-color="#2c1a10"/>
+      <stop offset="0.72" stop-color="#1c100a"/>
+      <stop offset="1" stop-color="#140c08"/>
     </linearGradient>
     <linearGradient id="wgInkR" gradientUnits="userSpaceOnUse" x1="1212" y1="0" x2="946" y2="0">
-      <stop offset="0" stop-color="#3a1c12"/>
-      <stop offset="0.7" stop-color="#24100a"/>
-      <stop offset="1" stop-color="#160a08"/>
+      <stop offset="0" stop-color="#4a2e1c"/>
+      <stop offset="0.35" stop-color="#2c1a10"/>
+      <stop offset="0.72" stop-color="#1c100a"/>
+      <stop offset="1" stop-color="#140c08"/>
     </linearGradient>
+    <filter id="wgGallBook" x="-8%" y="-50%" width="116%" height="200%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03 0.7" numOctaves="3" seed="8" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="1.2" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.1 0.22" numOctaves="2" seed="21" result="n2"/>
+      <feDisplacementMap in="wobble" in2="n2" scale="0.4" xChannelSelector="G" yChannelSelector="R" result="edge"/>
+      <feGaussianBlur in="edge" stdDeviation="0.32" result="bleed"/>
+      <feMorphology in="edge" operator="dilate" radius="0.35" result="fat"/>
+      <feGaussianBlur in="fat" stdDeviation="0.5" result="pool"/>
+      <feColorMatrix in="pool" type="matrix" values="0.55 0 0 0 0.02  0 0.32 0 0 0.01  0 0 0.16 0 0  0 0 0 0.32 0" result="pooldark"/>
+      <feBlend in="edge" in2="pooldark" mode="multiply" result="ink1"/>
+      <feBlend in="ink1" in2="bleed" mode="multiply"/>
+    </filter>
+    <clipPath id="wgClipW"><rect class="wg-write" style="--i:0" x="601.0" y="402.0" width="320.0" height="106.0"/></clipPath>
+    <clipPath id="wgClipL"><rect class="wg-write" style="--i:1" x="631.0" y="492.0" width="260.0" height="76.0"/></clipPath>
+    <clipPath id="wgClipF"><rect class="wg-write" style="--i:2" x="661.0" y="572.5" width="200.0" height="32.0"/></clipPath>
+    <clipPath id="wgClipP0"><rect class="wg-write" style="--i:3" x="938.0" y="350.0" width="290.0" height="38.0"/></clipPath>
+    <clipPath id="wgClipP1"><rect class="wg-write" style="--i:4" x="938.0" y="399.0" width="290.0" height="38.0"/></clipPath>
+    <clipPath id="wgClipP2"><rect class="wg-write" style="--i:5" x="938.0" y="446.0" width="290.0" height="38.0"/></clipPath>
+    <clipPath id="wgClipP3"><rect class="wg-write" style="--i:6" x="938.0" y="492.0" width="290.0" height="38.0"/></clipPath>
+    <clipPath id="wgClipP4"><rect class="wg-write" style="--i:7" x="938.0" y="538.0" width="290.0" height="38.0"/></clipPath>
+    <clipPath id="wgClipP5"><rect class="wg-write" style="--i:8" x="938.0" y="583.0" width="290.0" height="38.0"/></clipPath>
+    <clipPath id="wgClipN1"><rect class="wg-write" style="--i:11" x="928.0" y="620.0" width="310.0" height="36.0"/></clipPath>
+    <clipPath id="wgClipN2"><rect class="wg-write" style="--i:12" x="973.0" y="646.0" width="220.0" height="36.0"/></clipPath>
+    <clipPath id="wgClipN3"><rect class="wg-write" style="--i:13.5" x="1006.0" y="672.0" width="260.0" height="46.0"/></clipPath>
   </defs>
-  <g fill="url(#wgInkL)" font-family="Unifraktur, serif">
-    <text class="wg-ini" x="636" y="472" font-size="96" transform="rotate(1.00 636 472)">W</text>
-    <text x="748" y="468" text-anchor="start" font-size="54" transform="rotate(1.00 748 468)">elcome,</text>
-    <text x="776" y="538" text-anchor="middle" font-size="50" transform="rotate(1.27 776 538)">little one</text>
+  <g filter="url(#wgGallBook)" fill="url(#wgInkL)" font-family="Pinyon Script, PB Hand, cursive">
+    <g clip-path="url(#wgClipW)">
+      <text x="761" y="472" text-anchor="middle" font-size="76" transform="rotate(1.02 761 472)">Welcome,</text>
+    </g>
+    <g clip-path="url(#wgClipL)">
+      <text x="761" y="540" text-anchor="middle" font-size="52" transform="rotate(1.28 761 540)">little one</text>
+    </g>
   </g>
-  <g class="wg-swash" fill="none" stroke="url(#wgInkL)" stroke-width="1.7" stroke-linecap="round" transform="rotate(1.45 777.0 585.5)">
-    <path d="M 700.0 589.0 C 730.0 579.0, 741.0 586.5, 763.0 585.5 M 791.0 585.5 C 813.0 586.5, 824.0 582.0, 854.0 592.0"/>
-    <ellipse cx="777.0" cy="585.5" rx="6.5" ry="5" stroke-width="1.5"/>
+  <g class="wg-swash" filter="url(#wgGallBook)" clip-path="url(#wgClipF)" fill="none" stroke="url(#wgInkL)" stroke-width="1.7" stroke-linecap="round" transform="rotate(1.46 761.0 587.5)">
+    <path d="M 684.0 591.0 C 714.0 581.0, 725.0 588.5, 747.0 587.5 M 775.0 587.5 C 797.0 588.5, 808.0 584.0, 838.0 594.0"/>
+    <ellipse cx="761.0" cy="587.5" rx="6.5" ry="5" stroke-width="1.5"/>
   </g>
-  <g fill="url(#wgInkR)" font-family="Fell, 'IM Fell English', Georgia, serif" font-style="italic">
-    <text x="1083.0" y="372.0" text-anchor="middle" font-size="18" transform="rotate(1.48 1083.0 372.0)">Hush now.</text>
-    <text x="1083.0" y="421.0" text-anchor="middle" font-size="18" transform="rotate(1.18 1083.0 421.0)">The lamps have learned your name.</text>
-    <text x="1083.0" y="468.0" text-anchor="middle" font-size="18" transform="rotate(0.90 1083.0 468.0)">The roses sleep, the wax still weeps.</text>
-    <text x="1083.0" y="514.0" text-anchor="middle" font-size="18" transform="rotate(0.62 1083.0 514.0)">Come closer, child, and read with me</text>
-    <text x="1083.0" y="560.0" text-anchor="middle" font-size="18" transform="rotate(0.35 1083.0 560.0)">the vow this waiting darkness keeps.</text>
-    <text x="1083.0" y="605.0" text-anchor="middle" font-size="18" transform="rotate(0.07 1083.0 605.0)">I saved this page for you, sweetie.</text>
+  <g filter="url(#wgGallBook)" fill="url(#wgInkR)" font-family="Fondamento, Fell, Georgia, serif" font-style="italic">
+    <g clip-path="url(#wgClipP0)"><text x="1083.0" y="372.0" text-anchor="middle" font-size="16" transform="rotate(1.48 1083.0 372.0)">Hush now.</text></g>
+    <g clip-path="url(#wgClipP1)"><text x="1083.0" y="421.0" text-anchor="middle" font-size="16" transform="rotate(1.18 1083.0 421.0)">The lamps have learned your name.</text></g>
+    <g clip-path="url(#wgClipP2)"><text x="1083.0" y="468.0" text-anchor="middle" font-size="16" transform="rotate(0.90 1083.0 468.0)">The roses sleep, the wax still weeps.</text></g>
+    <g clip-path="url(#wgClipP3)"><text x="1083.0" y="514.0" text-anchor="middle" font-size="16" transform="rotate(0.62 1083.0 514.0)">Come closer, child, and read with me</text></g>
+    <g clip-path="url(#wgClipP4)"><text x="1083.0" y="560.0" text-anchor="middle" font-size="16" transform="rotate(0.35 1083.0 560.0)">the vow this waiting darkness keeps.</text></g>
+    <g clip-path="url(#wgClipP5)"><text x="1083.0" y="605.0" text-anchor="middle" font-size="16" transform="rotate(0.07 1083.0 605.0)">I saved this page for you, sweetie.</text></g>
+  </g>
+  <g class="wg-signoff" filter="url(#wgGallBook)" fill="url(#wgInkR)" font-family="Pinyon Script, PB Hand, cursive">
+    <g clip-path="url(#wgClipN1)"><text x="1083.0" y="642.0" text-anchor="middle" font-size="19" transform="rotate(-0.15 1083.0 642.0)">I'll be waiting by the candle, sweetie.</text></g>
+    <g clip-path="url(#wgClipN2)"><text x="1083.0" y="668.0" text-anchor="middle" font-size="19" transform="rotate(-0.31 1083.0 668.0)">Don't keep me long.</text></g>
+    <g clip-path="url(#wgClipN3)"><text x="1108.0" y="700.0" text-anchor="middle" font-size="26" transform="rotate(-0.50 1108.0 700.0)">Ballerina</text><g transform="rotate(-0.46 1164.0 693.0) translate(1164.0 693.0)" fill="url(#wgInkR)" stroke="url(#wgInkR)" stroke-width="0.65" stroke-linejoin="round"><path d="M0 3.2 C -1.1 1.2, -6.2 -1.8, -6.3 -5.2 C -6.4 -8.1, -3.6 -9.6, -1.4 -8 C -0.5 -7.2, 0 -6.1, 0 -6.1 C 0.2 -7.3, 0.8 -8.2, 2 -8.8 C 4.2 -9.8, 6.6 -8.2, 6.3 -5.1 C 6 -2, 1.1 1.3, 0 3.6 Z"/></g><g transform="rotate(-0.43 1172.0 688.0) translate(1172.0 688.0) scale(1.15)" fill="url(#wgInkR)" stroke="url(#wgInkR)" stroke-linejoin="round" stroke-linecap="round"><path fill-rule="evenodd" stroke-width="0.4" d="M 1 10 C -0.4 9.8, -0.6 3.6, 3.0 2.4 C 5.2 1.6, 8.2 2.8, 10.2 4.8 C 12.8 7.2, 18.0 7.4, 22.2 5.2 C 25.6 3.4, 30.2 2.0, 33.4 3.6 C 35.6 4.8, 35.0 7.8, 31.4 9.0 C 25.0 11.4, 15.6 13.2, 8.0 12.6 C 4.0 12.2, 2.0 11.4, 1 10 Z M 9.0 5.2 C 12.2 8.6, 19.6 8.8, 24.0 5.6 C 25.4 4.4, 24.0 2.6, 20.6 2.8 C 16.0 3.2, 11.6 3.4, 9.4 3.6 C 7.4 3.8, 7.2 4.2, 9.0 5.2 Z"/><path fill="none" stroke-width="1.25" d="M 11.0 3.4 C 7.8 -1.6, 3.0 -6.2, -1.6 -8.2 C -3.0 -9.0, -4.2 -7.4, -2.6 -6.8 C 0.4 -5.4, 5.4 -1.4, 11.0 3.4"/><path fill="none" stroke-width="1.25" d="M 11.4 3.2 C 15.2 -1.6, 19.6 -6.4, 17.8 -9.0 C 17.2 -9.8, 15.4 -9.2, 15.4 -7.8 C 15.6 -5.2, 13.8 -1.4, 11.4 3.2"/><circle cx="11.2" cy="3.4" r="0.85" stroke="none"/></g></g>
   </g>
 </svg>
     </div>
@@ -125,12 +174,14 @@
       if (read) return; read = true;
       timers.forEach(clearTimeout); timers = [];
       ink.classList.add('is-inked');
+      sheet.classList.add('is-inked');
       after.hidden = false;
       d.classList.add('is-read');
     };
     const startInk = () => {
       ink.classList.add('is-inking');
-      later(finish, (gateLines.length - 1) * INK_STEP + INK_DUR + 250);
+      sheet.classList.add('is-inking');
+      later(finish, (gateLines.length - 1) * INK_STEP + INK_DUR + 400);
       sheet.addEventListener('click', e => { if (!read && !e.target.closest('a,button,input,label')) finish(); });
     };
     // --- opening: seal cracks, flap lifts, letter slides out and unfolds
