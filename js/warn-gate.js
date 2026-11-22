@@ -54,67 +54,76 @@
       <img class="wg-plate wg-p07" src="${lib}07-close-ballerina.webp" alt="" width="1920" height="1080" decoding="async">
       <svg class="wg-book-ink" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <defs>
-    <linearGradient id="wgInkL" gradientUnits="userSpaceOnUse" x1="624" y1="0" x2="898" y2="0">
-      <stop offset="0" stop-color="#4a2e1c"/>
-      <stop offset="0.35" stop-color="#2c1a10"/>
-      <stop offset="0.72" stop-color="#1c100a"/>
-      <stop offset="1" stop-color="#140c08"/>
+    <linearGradient id="wgInkL" gradientUnits="userSpaceOnUse" x1="620" y1="0" x2="900" y2="0">
+      <stop offset="0" stop-color="#5c3c28"/>
+      <stop offset="0.28" stop-color="#3a2418"/>
+      <stop offset="0.62" stop-color="#22150d"/>
+      <stop offset="1" stop-color="#120c08"/>
     </linearGradient>
-    <linearGradient id="wgInkR" gradientUnits="userSpaceOnUse" x1="1212" y1="0" x2="946" y2="0">
-      <stop offset="0" stop-color="#4a2e1c"/>
-      <stop offset="0.35" stop-color="#2c1a10"/>
-      <stop offset="0.72" stop-color="#1c100a"/>
-      <stop offset="1" stop-color="#140c08"/>
+    <linearGradient id="wgInkR" gradientUnits="userSpaceOnUse" x1="1216" y1="0" x2="944" y2="0">
+      <stop offset="0" stop-color="#5c3c28"/>
+      <stop offset="0.28" stop-color="#3a2418"/>
+      <stop offset="0.62" stop-color="#22150d"/>
+      <stop offset="1" stop-color="#120c08"/>
     </linearGradient>
-    <filter id="wgGallBook" x="-8%" y="-50%" width="116%" height="200%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.03 0.7" numOctaves="3" seed="8" result="n1"/>
-      <feDisplacementMap in="SourceGraphic" in2="n1" scale="1.2" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
-      <feTurbulence type="fractalNoise" baseFrequency="1.1 0.22" numOctaves="2" seed="21" result="n2"/>
-      <feDisplacementMap in="wobble" in2="n2" scale="0.4" xChannelSelector="G" yChannelSelector="R" result="edge"/>
-      <feGaussianBlur in="edge" stdDeviation="0.32" result="bleed"/>
-      <feMorphology in="edge" operator="dilate" radius="0.35" result="fat"/>
-      <feGaussianBlur in="fat" stdDeviation="0.5" result="pool"/>
-      <feColorMatrix in="pool" type="matrix" values="0.55 0 0 0 0.02  0 0.32 0 0 0.01  0 0 0.16 0 0  0 0 0 0.32 0" result="pooldark"/>
-      <feBlend in="edge" in2="pooldark" mode="multiply" result="ink1"/>
+    <filter id="wgGallBook" x="-10%" y="-60%" width="120%" height="220%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.028 0.62" numOctaves="3" seed="8" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="1.35" xChannelSelector="R" yChannelSelector="G" result="wobble"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.25 0.28" numOctaves="3" seed="21" result="n2"/>
+      <feDisplacementMap in="wobble" in2="n2" scale="0.55" xChannelSelector="G" yChannelSelector="R" result="edge"/>
+      <feGaussianBlur in="edge" stdDeviation="0.42" result="bleed"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.6 1.1" numOctaves="2" seed="3" result="fibers"/>
+      <feColorMatrix in="fibers" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.18 0" result="fiberA"/>
+      <feComposite in="edge" in2="fiberA" operator="arithmetic" k1="0" k2="1" k3="-0.22" k4="0" result="showthru"/>
+      <feGaussianBlur in="showthru" stdDeviation="0.18" result="soft"/>
+      <feMorphology in="soft" operator="dilate" radius="0.28" result="fat"/>
+      <feGaussianBlur in="fat" stdDeviation="0.55" result="pool"/>
+      <feColorMatrix in="pool" type="matrix" values="0.55 0 0 0 0.02  0 0.32 0 0 0.01  0 0 0.16 0 0  0 0 0 0.26 0" result="pooldark"/>
+      <feBlend in="soft" in2="pooldark" mode="multiply" result="ink1"/>
       <feBlend in="ink1" in2="bleed" mode="multiply"/>
     </filter>
-    <clipPath id="wgClipW"><rect class="wg-write" style="--i:0" x="601.0" y="402.0" width="320.0" height="106.0"/></clipPath>
-    <clipPath id="wgClipL"><rect class="wg-write" style="--i:1" x="631.0" y="492.0" width="260.0" height="76.0"/></clipPath>
-    <clipPath id="wgClipF"><rect class="wg-write" style="--i:2" x="661.0" y="572.5" width="200.0" height="32.0"/></clipPath>
-    <clipPath id="wgClipP0"><rect class="wg-write" style="--i:3" x="938.0" y="350.0" width="290.0" height="38.0"/></clipPath>
-    <clipPath id="wgClipP1"><rect class="wg-write" style="--i:4" x="938.0" y="399.0" width="290.0" height="38.0"/></clipPath>
-    <clipPath id="wgClipP2"><rect class="wg-write" style="--i:5" x="938.0" y="446.0" width="290.0" height="38.0"/></clipPath>
-    <clipPath id="wgClipP3"><rect class="wg-write" style="--i:6" x="938.0" y="492.0" width="290.0" height="38.0"/></clipPath>
-    <clipPath id="wgClipP4"><rect class="wg-write" style="--i:7" x="938.0" y="538.0" width="290.0" height="38.0"/></clipPath>
-    <clipPath id="wgClipP5"><rect class="wg-write" style="--i:8" x="938.0" y="583.0" width="290.0" height="38.0"/></clipPath>
-    <clipPath id="wgClipN1"><rect class="wg-write" style="--i:11" x="928.0" y="620.0" width="310.0" height="36.0"/></clipPath>
-    <clipPath id="wgClipN2"><rect class="wg-write" style="--i:12" x="973.0" y="646.0" width="220.0" height="36.0"/></clipPath>
-    <clipPath id="wgClipN3"><rect class="wg-write" style="--i:13.5" x="1006.0" y="672.0" width="260.0" height="46.0"/></clipPath>
+    <path id="wgPathP0" d="M 903.00 371.03 L 914.61 372.40 L 926.23 367.09 L 937.84 361.56 L 949.45 358.23 L 961.06 355.59 L 972.68 353.56 L 984.29 351.81 L 995.90 350.58 L 1007.52 350.16 L 1019.13 349.89 L 1030.74 349.72 L 1042.35 349.69 L 1053.97 350.05 L 1065.58 350.75 L 1077.19 351.56 L 1088.81 352.47 L 1100.42 353.67 L 1112.03 354.90 L 1123.65 355.95 L 1135.26 356.93 L 1146.87 357.80 L 1158.48 358.49 L 1170.10 358.94 L 1181.71 359.29 L 1193.32 359.68 L 1204.94 360.24 L 1216.55 360.96 L 1228.16 361.50 L 1239.77 362.11 L 1251.39 363.85 L 1263.00 366.67" fill="none"/>
+    <path id="wgPathP1" d="M 903.00 413.77 L 914.61 414.54 L 926.23 409.54 L 937.84 404.32 L 949.45 400.91 L 961.06 398.23 L 972.68 396.15 L 984.29 394.35 L 995.90 393.06 L 1007.52 392.57 L 1019.13 392.25 L 1030.74 392.04 L 1042.35 392.00 L 1053.97 392.31 L 1065.58 392.91 L 1077.19 393.61 L 1088.81 394.43 L 1100.42 395.57 L 1112.03 396.75 L 1123.65 397.78 L 1135.26 398.75 L 1146.87 399.62 L 1158.48 400.32 L 1170.10 400.83 L 1181.71 401.25 L 1193.32 401.76 L 1204.94 402.42 L 1216.55 403.15 L 1228.16 403.59 L 1239.77 404.07 L 1251.39 405.62 L 1263.00 408.20" fill="none"/>
+    <path id="wgPathP2" d="M 903.00 456.51 L 914.61 456.68 L 926.23 452.00 L 937.84 447.07 L 949.45 443.59 L 961.06 440.86 L 972.68 438.74 L 984.29 436.88 L 995.90 435.54 L 1007.52 434.99 L 1019.13 434.61 L 1030.74 434.37 L 1042.35 434.31 L 1053.97 434.57 L 1065.58 435.08 L 1077.19 435.67 L 1088.81 436.39 L 1100.42 437.47 L 1112.03 438.60 L 1123.65 439.60 L 1135.26 440.57 L 1146.87 441.44 L 1158.48 442.16 L 1170.10 442.72 L 1181.71 443.22 L 1193.32 443.84 L 1204.94 444.60 L 1216.55 445.34 L 1228.16 445.68 L 1239.77 446.02 L 1251.39 447.39 L 1263.00 449.73" fill="none"/>
+    <path id="wgPathP3" d="M 903.00 499.26 L 914.61 498.82 L 926.23 494.46 L 937.84 489.83 L 949.45 486.26 L 961.06 483.50 L 972.68 481.33 L 984.29 479.42 L 995.90 478.02 L 1007.52 477.41 L 1019.13 476.97 L 1030.74 476.69 L 1042.35 476.62 L 1053.97 476.83 L 1065.58 477.24 L 1077.19 477.72 L 1088.81 478.35 L 1100.42 479.38 L 1112.03 480.45 L 1123.65 481.43 L 1135.26 482.39 L 1146.87 483.26 L 1158.48 484.00 L 1170.10 484.61 L 1181.71 485.18 L 1193.32 485.93 L 1204.94 486.78 L 1216.55 487.53 L 1228.16 487.77 L 1239.77 487.98 L 1251.39 489.17 L 1263.00 491.26" fill="none"/>
+    <path id="wgPathP4" d="M 903.00 542.00 L 914.61 540.96 L 926.23 536.92 L 937.84 532.58 L 949.45 528.94 L 961.06 526.13 L 972.68 523.92 L 984.29 521.95 L 995.90 520.49 L 1007.52 519.83 L 1019.13 519.33 L 1030.74 519.01 L 1042.35 518.93 L 1053.97 519.09 L 1065.58 519.41 L 1077.19 519.77 L 1088.81 520.31 L 1100.42 521.28 L 1112.03 522.30 L 1123.65 523.25 L 1135.26 524.21 L 1146.87 525.08 L 1158.48 525.84 L 1170.10 526.50 L 1181.71 527.15 L 1193.32 528.01 L 1204.94 528.96 L 1216.55 529.72 L 1228.16 529.87 L 1239.77 529.94 L 1251.39 530.94 L 1263.00 532.79" fill="none"/>
+    <path id="wgPathP5" d="M 903.00 584.74 L 914.61 583.09 L 926.23 579.38 L 937.84 575.34 L 949.45 571.61 L 961.06 568.77 L 972.68 566.50 L 984.29 564.49 L 995.90 562.97 L 1007.52 562.24 L 1019.13 561.70 L 1030.74 561.34 L 1042.35 561.24 L 1053.97 561.36 L 1065.58 561.57 L 1077.19 561.82 L 1088.81 562.27 L 1100.42 563.18 L 1112.03 564.15 L 1123.65 565.08 L 1135.26 566.03 L 1146.87 566.90 L 1158.48 567.68 L 1170.10 568.39 L 1181.71 569.11 L 1193.32 570.09 L 1204.94 571.14 L 1216.55 571.90 L 1228.16 571.96 L 1239.77 571.89 L 1251.39 572.71 L 1263.00 574.32" fill="none"/>
+    <path id="wgPathN1" d="M 903.00 633.74 L 914.61 631.93 L 926.23 629.40 L 937.84 626.56 L 949.45 623.56 L 961.06 621.36 L 972.68 619.67 L 984.29 618.17 L 995.90 617.10 L 1007.52 616.71 L 1019.13 616.48 L 1030.74 616.43 L 1042.35 616.64 L 1053.97 616.98 L 1065.58 617.36 L 1077.19 617.75 L 1088.81 618.33 L 1100.42 619.36 L 1112.03 620.43 L 1123.65 621.51 L 1135.26 622.63 L 1146.87 623.68 L 1158.48 624.68 L 1170.10 625.66 L 1181.71 626.67 L 1193.32 627.95 L 1204.94 629.28 L 1216.55 630.25 L 1228.16 630.49 L 1239.77 630.58 L 1251.39 631.38 L 1263.00 632.78" fill="none"/>
+    <path id="wgPathN2" d="M 933.00 656.16 L 942.68 653.68 L 952.35 651.35 L 962.03 649.57 L 971.71 648.14 L 981.39 646.84 L 991.06 645.75 L 1000.74 645.16 L 1010.42 644.87 L 1020.10 644.67 L 1029.77 644.61 L 1039.45 644.74 L 1049.13 645.00 L 1058.81 645.26 L 1068.48 645.53 L 1078.16 645.81 L 1087.84 646.24 L 1097.52 647.03 L 1107.19 647.93 L 1116.87 648.78 L 1126.55 649.69 L 1136.23 650.62 L 1145.90 651.49 L 1155.58 652.34 L 1165.26 653.17 L 1174.94 654.02 L 1184.61 654.96 L 1194.29 656.11 L 1203.97 657.28 L 1213.65 658.18 L 1223.32 658.55 L 1233.00 658.50" fill="none"/>
+    <path id="wgPathS" d="M 968.00 679.06 L 977.03 677.80 L 986.06 676.63 L 995.10 675.77 L 1004.13 675.36 L 1013.16 675.08 L 1022.19 674.90 L 1031.23 674.86 L 1040.26 675.00 L 1049.29 675.22 L 1058.32 675.43 L 1067.35 675.64 L 1076.39 675.84 L 1085.42 676.12 L 1094.45 676.76 L 1103.48 677.57 L 1112.52 678.34 L 1121.55 679.16 L 1130.58 680.02 L 1139.61 680.87 L 1148.65 681.67 L 1157.68 682.46 L 1166.71 683.27 L 1175.74 684.10 L 1184.77 685.02 L 1193.81 686.15 L 1202.84 687.30 L 1211.87 688.21 L 1220.90 688.66 L 1229.94 688.62 L 1238.97 688.56 L 1248.00 688.92" fill="none"/>
+    <clipPath id="wgClipW"><rect class="wg-write" style="--i:0" x="591.0" y="401.0" width="340.0" height="110.0"/></clipPath>
+    <clipPath id="wgClipL"><rect class="wg-write" style="--i:1" x="621.0" y="492.1" width="280.0" height="88.0"/></clipPath>
+    <clipPath id="wgClipF"><rect class="wg-write" style="--i:2" x="660.0" y="565.2" width="202.0" height="35.0"/></clipPath>
+    <clipPath id="wgClip_wgPathP0"><rect class="wg-write" style="--i:3" x="931.8" y="333.7" width="302.4" height="54.7"/></clipPath>
+    <clipPath id="wgClip_wgPathP1"><rect class="wg-write" style="--i:4" x="931.8" y="376.0" width="302.4" height="54.5"/></clipPath>
+    <clipPath id="wgClip_wgPathP2"><rect class="wg-write" style="--i:5" x="931.8" y="418.3" width="302.4" height="54.4"/></clipPath>
+    <clipPath id="wgClip_wgPathP3"><rect class="wg-write" style="--i:6" x="931.8" y="460.6" width="302.4" height="54.6"/></clipPath>
+    <clipPath id="wgClip_wgPathP4"><rect class="wg-write" style="--i:7" x="931.8" y="502.9" width="302.4" height="55.1"/></clipPath>
+    <clipPath id="wgClip_wgPathP5"><rect class="wg-write" style="--i:8" x="931.8" y="545.2" width="302.4" height="55.5"/></clipPath>
+    <clipPath id="wgClip_wgPathN1"><rect class="wg-write" style="--i:11" x="931.8" y="598.4" width="302.4" height="53.3"/></clipPath>
+    <clipPath id="wgClip_wgPathN2"><rect class="wg-write" style="--i:12" x="957.0" y="628.6" width="252.0" height="45.9"/></clipPath>
+    <clipPath id="wgClip_wgPathS"><rect class="wg-write" style="--i:13.5" x="990.4" y="652.9" width="235.2" height="58.1"/></clipPath>
   </defs>
   <g filter="url(#wgGallBook)" fill="url(#wgInkL)" font-family="Pinyon Script, PB Hand, cursive">
-    <g clip-path="url(#wgClipW)">
-      <text x="761" y="472" text-anchor="middle" font-size="76" transform="rotate(1.02 761 472)">Welcome,</text>
-    </g>
-    <g clip-path="url(#wgClipL)">
-      <text x="761" y="540" text-anchor="middle" font-size="52" transform="rotate(1.28 761 540)">little one</text>
-    </g>
+    <g clip-path="url(#wgClipW)"><text x="761.0" y="471.0" text-anchor="middle" font-size="80" transform="rotate(-0.30 761.0 471.0)">Welcome,</text></g>
+    <g clip-path="url(#wgClipL)"><text x="761.0" y="540.1" text-anchor="middle" font-size="56" transform="rotate(-0.34 761.0 540.1)">little one</text></g>
   </g>
-  <g class="wg-swash" filter="url(#wgGallBook)" clip-path="url(#wgClipF)" fill="none" stroke="url(#wgInkL)" stroke-width="1.7" stroke-linecap="round" transform="rotate(1.46 761.0 587.5)">
-    <path d="M 684.0 591.0 C 714.0 581.0, 725.0 588.5, 747.0 587.5 M 775.0 587.5 C 797.0 588.5, 808.0 584.0, 838.0 594.0"/>
-    <ellipse cx="761.0" cy="587.5" rx="6.5" ry="5" stroke-width="1.5"/>
+  <g class="wg-swash" filter="url(#wgGallBook)" clip-path="url(#wgClipF)" fill="none" stroke="url(#wgInkL)" stroke-width="1.55" stroke-linecap="round">
+    <path d="M 684.00 592.59 C 712.00 580.59, 727.00 581.99, 748.00 581.49 M 774.00 581.49 C 795.00 581.99, 810.00 575.07, 838.00 588.36"/>
+    <ellipse cx="761.00" cy="581.49" rx="5.8" ry="4.4" stroke-width="1.35"/>
   </g>
   <g filter="url(#wgGallBook)" fill="url(#wgInkR)" font-family="Fondamento, Fell, Georgia, serif" font-style="italic">
-    <g clip-path="url(#wgClipP0)"><text x="1083.0" y="372.0" text-anchor="middle" font-size="16" transform="rotate(1.48 1083.0 372.0)">Hush now.</text></g>
-    <g clip-path="url(#wgClipP1)"><text x="1083.0" y="421.0" text-anchor="middle" font-size="16" transform="rotate(1.18 1083.0 421.0)">The lamps have learned your name.</text></g>
-    <g clip-path="url(#wgClipP2)"><text x="1083.0" y="468.0" text-anchor="middle" font-size="16" transform="rotate(0.90 1083.0 468.0)">The roses sleep, the wax still weeps.</text></g>
-    <g clip-path="url(#wgClipP3)"><text x="1083.0" y="514.0" text-anchor="middle" font-size="16" transform="rotate(0.62 1083.0 514.0)">Come closer, child, and read with me</text></g>
-    <g clip-path="url(#wgClipP4)"><text x="1083.0" y="560.0" text-anchor="middle" font-size="16" transform="rotate(0.35 1083.0 560.0)">the vow this waiting darkness keeps.</text></g>
-    <g clip-path="url(#wgClipP5)"><text x="1083.0" y="605.0" text-anchor="middle" font-size="16" transform="rotate(0.07 1083.0 605.0)">I saved this page for you, sweetie.</text></g>
+    <g clip-path="url(#wgClip_wgPathP0)"><text text-anchor="middle" font-size="16"><textPath href="#wgPathP0" startOffset="50%">Hush now.</textPath></text></g>
+    <g clip-path="url(#wgClip_wgPathP1)"><text text-anchor="middle" font-size="16"><textPath href="#wgPathP1" startOffset="50%">The lamps have learned your name.</textPath></text></g>
+    <g clip-path="url(#wgClip_wgPathP2)"><text text-anchor="middle" font-size="16"><textPath href="#wgPathP2" startOffset="50%">The roses sleep, the wax still weeps.</textPath></text></g>
+    <g clip-path="url(#wgClip_wgPathP3)"><text text-anchor="middle" font-size="16"><textPath href="#wgPathP3" startOffset="50%">Come closer, child, and read with me</textPath></text></g>
+    <g clip-path="url(#wgClip_wgPathP4)"><text text-anchor="middle" font-size="16"><textPath href="#wgPathP4" startOffset="50%">the vow this waiting darkness keeps.</textPath></text></g>
+    <g clip-path="url(#wgClip_wgPathP5)"><text text-anchor="middle" font-size="16"><textPath href="#wgPathP5" startOffset="50%">I saved this page for you, sweetie.</textPath></text></g>
   </g>
   <g class="wg-signoff" filter="url(#wgGallBook)" fill="url(#wgInkR)" font-family="Pinyon Script, PB Hand, cursive">
-    <g clip-path="url(#wgClipN1)"><text x="1083.0" y="642.0" text-anchor="middle" font-size="19" transform="rotate(-0.15 1083.0 642.0)">I'll be waiting by the candle, sweetie.</text></g>
-    <g clip-path="url(#wgClipN2)"><text x="1083.0" y="668.0" text-anchor="middle" font-size="19" transform="rotate(-0.31 1083.0 668.0)">Don't keep me long.</text></g>
-    <g clip-path="url(#wgClipN3)"><text x="1108.0" y="700.0" text-anchor="middle" font-size="26" transform="rotate(-0.50 1108.0 700.0)">Ballerina</text><g transform="rotate(-0.46 1164.0 693.0) translate(1164.0 693.0)" fill="url(#wgInkR)" stroke="url(#wgInkR)" stroke-width="0.65" stroke-linejoin="round"><path d="M0 3.2 C -1.1 1.2, -6.2 -1.8, -6.3 -5.2 C -6.4 -8.1, -3.6 -9.6, -1.4 -8 C -0.5 -7.2, 0 -6.1, 0 -6.1 C 0.2 -7.3, 0.8 -8.2, 2 -8.8 C 4.2 -9.8, 6.6 -8.2, 6.3 -5.1 C 6 -2, 1.1 1.3, 0 3.6 Z"/></g><g transform="rotate(-0.43 1172.0 688.0) translate(1172.0 688.0) scale(1.15)" fill="url(#wgInkR)" stroke="url(#wgInkR)" stroke-linejoin="round" stroke-linecap="round"><path fill-rule="evenodd" stroke-width="0.4" d="M 1 10 C -0.4 9.8, -0.6 3.6, 3.0 2.4 C 5.2 1.6, 8.2 2.8, 10.2 4.8 C 12.8 7.2, 18.0 7.4, 22.2 5.2 C 25.6 3.4, 30.2 2.0, 33.4 3.6 C 35.6 4.8, 35.0 7.8, 31.4 9.0 C 25.0 11.4, 15.6 13.2, 8.0 12.6 C 4.0 12.2, 2.0 11.4, 1 10 Z M 9.0 5.2 C 12.2 8.6, 19.6 8.8, 24.0 5.6 C 25.4 4.4, 24.0 2.6, 20.6 2.8 C 16.0 3.2, 11.6 3.4, 9.4 3.6 C 7.4 3.8, 7.2 4.2, 9.0 5.2 Z"/><path fill="none" stroke-width="1.25" d="M 11.0 3.4 C 7.8 -1.6, 3.0 -6.2, -1.6 -8.2 C -3.0 -9.0, -4.2 -7.4, -2.6 -6.8 C 0.4 -5.4, 5.4 -1.4, 11.0 3.4"/><path fill="none" stroke-width="1.25" d="M 11.4 3.2 C 15.2 -1.6, 19.6 -6.4, 17.8 -9.0 C 17.2 -9.8, 15.4 -9.2, 15.4 -7.8 C 15.6 -5.2, 13.8 -1.4, 11.4 3.2"/><circle cx="11.2" cy="3.4" r="0.85" stroke="none"/></g></g>
+    <g clip-path="url(#wgClip_wgPathN1)"><text text-anchor="middle" font-size="18"><textPath href="#wgPathN1" startOffset="50%">I'll be waiting by the candle, little one.</textPath></text></g>
+    <g clip-path="url(#wgClip_wgPathN2)"><text text-anchor="middle" font-size="18"><textPath href="#wgPathN2" startOffset="50%">Don't keep me long.</textPath></text></g>
+    <g clip-path="url(#wgClip_wgPathS)"><text text-anchor="middle" font-size="26"><textPath href="#wgPathS" startOffset="50%">Ballerina</textPath></text><g transform="translate(1162.00 679.31)" fill="none" stroke="url(#wgInkR)" stroke-width="0.85" stroke-linejoin="round" stroke-linecap="round"><path d="M0 3.0 C -1.0 1.1, -5.6 -1.6, -5.6 -4.8 C -5.6 -7.4, -3.2 -8.8, -1.3 -7.4 C -0.5 -6.7, 0 -5.6, 0 -5.6 C 0.2 -6.7, 0.7 -7.6, 1.9 -8.2 C 3.9 -9.2, 6.0 -7.6, 5.7 -4.7 C 5.4 -1.8, 1.0 1.2, 0 3.4"/></g><g transform="translate(1178.00 684.83) scale(1.05)" fill="none" stroke="url(#wgInkR)" stroke-linejoin="round" stroke-linecap="round"><path stroke-width="0.95" d="M 2.4 3.2 C 0.4 3.8, 0.0 9.2, 2.0 11.2 C 4.0 13.0, 12.0 13.4, 20.0 11.4 C 25.4 9.8, 31.6 6.4, 32.4 3.8 C 33.0 2.2, 30.0 1.6, 26.4 3.0 C 22.4 4.6, 17.2 6.8, 11.4 6.6 C 7.2 6.4, 4.2 5.0, 2.4 3.2 Z"/><path stroke-width="0.75" d="M 8.4 5.0 C 12.0 7.4, 18.0 7.2, 22.6 4.8"/><path stroke-width="0.85" d="M 10.2 4.2 C 7.0 -1.0, 2.4 -5.8, -1.8 -7.8"/><path stroke-width="0.85" d="M 10.6 4.0 C 14.4 -1.0, 18.8 -6.0, 17.0 -8.6"/><path stroke-width="0.75" d="M 9.0 3.4 C 10.6 4.8, 12.2 3.6, 10.8 2.8 C 10.2 2.6, 9.6 2.8, 9.0 3.4"/></g></g>
   </g>
 </svg>
     </div>
