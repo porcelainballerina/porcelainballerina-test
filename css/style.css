@@ -4659,3 +4659,72 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .al-smart{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.4rem 1rem;border:1px solid #b48c55;background:#160b0c;color:#f6e5be;font:600 .84rem/1.35 var(--f-sc);letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
 .al-smart:hover,.al-smart:focus-visible{background:#3a1418;border-color:#f5d598;color:#fff6e4}
 .listen-row{margin-top:1.2rem}
+/* ---- gate C: sealed envelope (break the seal to read; her letter writes itself) ---- */
+.pb-wg .wg-inner{justify-content:flex-start}
+.wg-stage{position:relative;margin:auto 0;padding:1.2rem 0 2.4rem;display:flex;flex-direction:column;align-items:center;gap:1.4rem;width:100%}
+.wg-stage[hidden]{display:none}
+.wg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wg-candle{position:absolute;left:50%;top:46%;width:min(150vw,900px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle,rgba(255,150,60,.16),rgba(150,30,10,.10) 30%,transparent 62%);animation:wgFlicker 3.2s steps(1,end) infinite;opacity:.8}
+.wg-stage.is-crack .wg-candle{animation:wgFlare 2s ease-out forwards}
+@keyframes wgFlicker{0%{opacity:.75}12%{opacity:.9}20%{opacity:.7}33%{opacity:.85}47%{opacity:.68}61%{opacity:.92}74%{opacity:.78}88%{opacity:.86}}
+@keyframes wgFlare{0%{opacity:.8}25%{opacity:1.6;filter:brightness(1.6)}100%{opacity:1.1}}
+.wg-env{all:unset;box-sizing:border-box;position:relative;display:block;width:min(86vw,440px);aspect-ratio:3/2;cursor:pointer;perspective:1100px;-webkit-tap-highlight-color:transparent;transition:transform .4s ease,filter .4s;filter:drop-shadow(0 24px 30px rgba(0,0,0,.85)) drop-shadow(0 0 40px rgba(120,10,10,.25));animation:wgDrift 7s ease-in-out infinite}
+.wg-env:hover{transform:translateY(-3px) rotate(-.4deg)}
+.wg-env:focus-visible{outline:3px solid #b3271c;outline-offset:8px;border-radius:4px}
+@keyframes wgDrift{0%,100%{rotate:-1.2deg}50%{rotate:.8deg}}
+.wg-env>span{position:absolute;display:block}
+.wg-env-back{inset:0;border-radius:3px;background:radial-gradient(ellipse 60% 40% at 50% 30%,rgba(60,25,5,.35),transparent 70%),url(../images/letter/paper-tile-m.jpg) center/320px,#b9975c;box-shadow:inset 0 0 50px rgba(40,15,3,.85)}
+.wg-env-paper{left:5%;right:5%;top:6%;height:86%;background:radial-gradient(ellipse 80% 50% at 50% 0,rgba(255,240,200,.25),transparent),url(../images/letter/paper-tile-m.jpg) center/300px,#d9c296;box-shadow:inset 0 0 26px rgba(55,25,6,.6),0 0 0 1px rgba(80,30,10,.3);z-index:2;transition:transform .8s cubic-bezier(.3,.7,.2,1)}
+.wg-env-paper::before{content:"";position:absolute;left:14%;right:14%;top:12%;height:30%;background:repeating-linear-gradient(transparent 0 9px,rgba(40,12,5,.38) 9px 10px);opacity:.7}
+.wg-env-front{inset:0;z-index:3;clip-path:polygon(0 0,50% 54%,100% 0,100% 100%,0 100%);background:linear-gradient(160deg,rgba(255,235,190,.12),transparent 40%),radial-gradient(ellipse 30% 22% at 0 100%,rgba(30,10,2,.75),transparent 75%),radial-gradient(ellipse 26% 20% at 100% 100%,rgba(30,10,2,.6),transparent 75%),url(../images/letter/paper-tile-m.jpg) left top/330px,#c9aa70;box-shadow:inset 0 0 40px rgba(50,20,4,.7)}
+.wg-env-front::before,.wg-env-front::after{content:"";position:absolute;top:0;width:51%;height:100%;pointer-events:none}
+.wg-env-front::before{left:0;background:linear-gradient(32deg,transparent 49.6%,rgba(40,15,4,.35) 50%,transparent 51.2%)}
+.wg-env-front::after{right:0;background:linear-gradient(-32deg,transparent 49.6%,rgba(40,15,4,.35) 50%,transparent 51.2%)}
+.wg-env-to{position:absolute;left:6%;right:6%;bottom:8%;text-align:center;font:italic clamp(1.02rem,4.2vw,1.42rem)/1.2 "Fell","Fondamento","Garamond",Georgia,serif;color:#2a0805;text-shadow:0 0 1px rgba(42,8,5,.7),0 0 6px rgba(90,15,10,.25);letter-spacing:.01em;transform:rotate(-1.5deg)}
+.wg-env-flap{left:0;right:0;top:0;height:60%;z-index:4;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0;background:linear-gradient(180deg,rgba(20,6,2,.25),transparent 30%),radial-gradient(ellipse 50% 60% at 50% 100%,rgba(40,12,3,.55),transparent 70%),url(../images/letter/paper-tile-m.jpg) center top/310px,#bf9d62;transition:transform .72s cubic-bezier(.5,.05,.3,1),filter .72s;filter:drop-shadow(0 4px 4px rgba(0,0,0,.6))}
+.wg-env-seal{left:50%;top:60%;width:23%;aspect-ratio:796/905;z-index:6;transform:translate(-50%,-50%) rotate(-6deg);pointer-events:none}
+.wg-env-seal i{position:absolute;inset:0;background:center/contain no-repeat}
+.wg-env-seal .wg-s0{background-image:url(../images/letter/seal-logo-sm.webp);animation:wgBeat 1.6s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(0,0,0,.7)) drop-shadow(0 0 6px rgba(200,20,20,.35))}
+.wg-env-seal .wg-s1{background-image:url(../images/letter/seal-half-l-sm.webp);opacity:0}
+.wg-env-seal .wg-s2{background-image:url(../images/letter/seal-half-r-sm.webp);opacity:0}
+@keyframes wgBeat{0%,100%{transform:scale(1);filter:drop-shadow(0 4px 6px rgba(0,0,0,.7)) drop-shadow(0 0 4px rgba(200,20,20,.25))}12%{transform:scale(1.07);filter:drop-shadow(0 4px 6px rgba(0,0,0,.7)) drop-shadow(0 0 16px rgba(230,30,30,.7))}24%{transform:scale(1)}36%{transform:scale(1.045);filter:drop-shadow(0 4px 6px rgba(0,0,0,.7)) drop-shadow(0 0 12px rgba(230,30,30,.55))}52%{transform:scale(1)}}
+.wg-env:hover .wg-s0,.wg-env:focus-visible .wg-s0{animation-duration:1.05s}
+.wg-cta{all:unset;display:block;margin:0;cursor:pointer;text-align:center;font:italic 1.12rem/1.3 "Fell","Garamond",Georgia,serif;color:#c9a46a;letter-spacing:.04em;text-shadow:0 0 12px rgba(160,20,15,.6);animation:wgCall 3.2s ease-in-out infinite}
+.wg-cta::after{content:"";display:block;width:4.5rem;height:1px;margin:.55rem auto 0;background:linear-gradient(90deg,transparent,#8a1a12,transparent)}
+@keyframes wgCall{0%,100%{opacity:.55}50%{opacity:1}}
+.wg-smoke{left:50%;top:60%;width:0;height:0;z-index:7;pointer-events:none}
+.wg-smoke i{position:absolute;left:-40px;top:-40px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(200,185,170,.55),rgba(140,120,110,.18) 45%,transparent 70%);filter:blur(6px);opacity:0}
+/* opening sequence */
+.wg-stage.is-crack .wg-s0{animation:none;opacity:0;transition:opacity .08s .12s}
+.wg-stage.is-crack .wg-s1{opacity:1;animation:wgHalfL 1.1s .12s cubic-bezier(.4,0,.6,1) forwards}
+.wg-stage.is-crack .wg-s2{opacity:1;animation:wgHalfR 1.1s .12s cubic-bezier(.4,0,.6,1) forwards}
+@keyframes wgHalfL{0%{transform:none}18%{transform:translate(-6%,1%) rotate(-5deg)}100%{transform:translate(-55%,160%) rotate(-48deg);opacity:0}}
+@keyframes wgHalfR{0%{transform:none}18%{transform:translate(6%,1%) rotate(5deg)}100%{transform:translate(60%,150%) rotate(52deg);opacity:0}}
+.wg-stage.is-crack .wg-env{animation:wgJolt .32s ease-out}
+@keyframes wgJolt{0%{transform:none}30%{transform:translate(-2px,1px) rotate(-.6deg)}60%{transform:translate(2px,-1px) rotate(.5deg)}100%{transform:none}}
+.wg-stage.is-crack .wg-smoke i{animation:wgSmoke 2.2s ease-out forwards}
+.wg-smoke i:nth-child(2){animation-delay:.12s!important;left:-55px}.wg-smoke i:nth-child(3){animation-delay:.3s!important;left:-20px}.wg-smoke i:nth-child(4){animation-delay:.5s!important;left:-48px}.wg-smoke i:nth-child(5){animation-delay:.7s!important;left:-30px}
+@keyframes wgSmoke{0%{opacity:0;transform:translate(0,0) scale(.35)}20%{opacity:.75}100%{opacity:0;transform:translate(var(--sx,10px),-170px) scale(2.4)}}
+.wg-smoke i:nth-child(odd){--sx:-26px}
+.wg-stage.is-flap .wg-env-flap{transform:rotateX(178deg);filter:drop-shadow(0 -2px 3px rgba(0,0,0,.5)) brightness(.8)}
+.wg-stage.is-rise .wg-env-flap{z-index:1}
+.wg-stage.is-rise .wg-env-paper{transform:translateY(-62%)}
+.wg-stage.is-rise .wg-env{animation:none}
+.wg-stage.is-rise .wg-cta{opacity:0;transition:opacity .4s;animation:none}
+.wg-stage.is-out .wg-env{opacity:0;transform:translateY(40px) scale(.96);transition:opacity .35s,transform .35s}
+.wg-stage.is-crack .wg-env,.wg-stage.is-crack .wg-cta{pointer-events:none}
+/* the letter */
+.pb-wg .wg-sheet[hidden]{display:none}
+.pb-wg .wg-sheet.is-unfold{transform-origin:50% 0;animation:wgUnfold .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes wgUnfold{0%{opacity:0;transform:perspective(1200px) translateY(60px) rotateX(-72deg) scaleY(.4)}55%{opacity:1}100%{opacity:1;transform:none}}
+.pb-wg .wg-her .pw-seal{background-image:image-set(url(../images/letter/seal-logo-sm.webp) 1x,url(../images/letter/seal-logo.webp) 2x)}
+.pb-wg .wg-ink .pw-l{opacity:0}
+.pb-wg .wg-ink.is-inking .pw-l{animation:wgInk .95s cubic-bezier(.25,.6,.25,1) both;animation-delay:calc(var(--i,0)*.52s)}
+.pb-wg .wg-ink.is-inked .pw-l{animation:none;opacity:1}
+@keyframes wgInk{0%{opacity:0;filter:blur(5px);clip-path:inset(0 100% 0 0);text-shadow:0 0 10px rgba(120,10,10,.9)}45%{opacity:1;filter:blur(1px)}100%{opacity:1;filter:none;clip-path:inset(0 -5% 0 0);text-shadow:none}}
+.pb-wg .wg-after[hidden]{display:none}
+.pb-wg.is-read .wg-after{animation:wgRise .8s ease-out both}
+@keyframes wgRise{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:none}}
+@media (max-width:699px){.pb-wg .wg-kicker{letter-spacing:.24em;font-size:.72rem}.wg-stage{padding-top:.4rem;gap:1.1rem}.wg-env{width:min(90vw,440px)}.wg-env-seal{width:25%}}
+@media (prefers-reduced-motion:reduce){.wg-candle,.wg-env,.wg-s0,.wg-cta{animation:none!important}.wg-env-flap,.wg-env-paper,.wg-env{transition:none}.pb-wg .wg-ink .pw-l{opacity:1;animation:none!important}.pb-wg .wg-sheet.is-unfold,.pb-wg.is-read .wg-after{animation:none}}
+/* ---- /gate C ---- */
