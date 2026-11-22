@@ -7214,6 +7214,190 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-env-love .wg-mirror{top:86%;left:46%;font-size:1.05em;opacity:.5}
 .wg-env-love .wg-ini{display:inline;font-size:1.5em;line-height:0;vertical-align:-.06em}.wg-env-love .wg-mirror{top:84%}
 .wg-env-love .wg-poem,.wg-env-love .wg-sig-name{background:none;-webkit-text-fill-color:#1a0001;color:#1a0001}.wg-env-love .wg-ini{-webkit-text-fill-color:#4a0503;color:#4a0503;-webkit-text-stroke:.3px #3a0302;line-height:1}
+
+/* ink glyphs on the closed packet */
+.wg-env .wg-gl{display:inline-block;width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;filter:drop-shadow(0 0 .6px rgba(40,8,3,.7))}
+.wg-env .wg-row{display:flex;justify-content:center;align-items:center;gap:.35em;margin-top:.35em;font-size:.8em;opacity:.82;font-style:normal}
+.wg-env .wg-row i{font-style:normal;opacity:.7}
+.wg-env-ma .wg-sig{width:.9em;height:.9em;stroke-width:1.6;opacity:.85;transform:rotate(8deg)}
+.wg-env-glyphs{position:absolute;left:18%;right:64%;top:72%;display:flex;justify-content:space-between;font-size:clamp(.9rem,2.6vw,1.35rem);color:rgba(44,6,3,.78);transform:rotate(-3deg);mix-blend-mode:multiply;pointer-events:none}
+.wg-env-glyphs .wg-gl:nth-child(2){transform:translateY(.35em)}
+.wg-env-love .wg-row{font-size:.95em;margin-top:.25em;opacity:.75}
+.wg-env.is-open .wg-env-glyphs{opacity:0;transition:opacity .6s}
+
+/* v2 ink: darker blood-ink, ragged hand, ritual ring round M.A. */
+.wg-env-to,.wg-env-ma,.wg-env-love,.wg-env-glyphs{filter:url(#wg-rag)}
+.wg-env-to{font:400 clamp(.9rem,2.9vw,1.42rem)/1.12 "Grenze Gotisch","Unifraktur",serif;letter-spacing:.015em;color:#2a0302;text-shadow:0 0 1px rgba(60,4,2,.85),0 0 2.5px rgba(90,10,4,.35)}
+.wg-env-to .wg-row{font-size:.78em;color:#4a0704}
+.wg-env-ma{color:#250302;top:9%}
+.wg-env-ma b{position:relative;font:600 clamp(1.15rem,4vw,1.85rem)/1 "Grenze Gotisch","Unifraktur",serif;letter-spacing:.05em;text-shadow:0 0 1px rgba(60,4,2,.9),0 0 3px rgba(90,10,4,.35)}
+.wg-env-ma .wg-ring{position:absolute;left:50%;top:50%;width:2.9em;height:2.9em;transform:translate(-50%,-50%) rotate(-8deg);fill:none;stroke:#4a0604;stroke-width:1.15;stroke-linecap:round;opacity:.78;overflow:visible}
+.wg-env-ma .wg-ring .wg-rg{stroke-width:1.4;opacity:.9}
+.wg-env-love{font:400 clamp(.78rem,2.2vw,1.12rem)/1.2 "Fondamento","PB Hand",cursive;font-style:italic;color:#3a0503;text-shadow:0 0 1px rgba(70,6,3,.85),0 0 3px rgba(110,14,6,.3)}
+.wg-env-glyphs{color:#3d0503;opacity:.9}
+.wg-env .wg-gl{stroke-width:1.7}
+/* v2 placement: everything on the paper panels, clear of seal + twine */
+.wg-env-to{left:18%;right:53%;top:17%}
+.wg-env-ma{left:58%;right:13%;top:21%}
+.wg-env-ma b{color:#2a0302}
+.wg-env-ma,.wg-env-to,.wg-env-love,.wg-env-glyphs{mix-blend-mode:normal}
+.wg-env-love{left:56%;right:18%;top:64%;text-align:center}
+.wg-env-love>img{left:auto;right:100%;top:30%;height:2.5em;transform:rotate(-14deg)}
+.wg-env-glyphs{left:20%;right:62%;top:73%;font-size:clamp(1rem,3vw,1.5rem);color:#3a0402}
+.wg-env .wg-row{font-size:.9em;opacity:.9}
+@media (max-width:699px){.wg-env-to{left:18%;right:52%;top:17%}}
+.wg-env-love>img{left:auto;right:-6%;top:92%;height:2.4em;transform:rotate(16deg)}
+
+/* v3 closed-letter composition: every size in --u = 1% of the packet width, so the layout is identical at any width */
+.wg-env{--u:min(.96vw,6.6px)}
+.wg-env-to,.wg-env-ma,.wg-env-love,.wg-env-glyphs{position:absolute;margin:0;white-space:nowrap}
+.wg-env-to{left:19%;width:29%;right:auto;top:17.5%;font-size:calc(var(--u)*3.3);line-height:1.12;text-align:center;transform:rotate(-2deg)}
+.wg-env-to .wg-row{font-size:.8em;margin-top:.45em;gap:.6em}
+.wg-env-ma{left:61%;width:18%;right:auto;top:27%;font-size:calc(var(--u)*4.6);transform:translateY(-50%) rotate(-3deg)}
+.wg-env-ma b{font-size:1em}
+.wg-env-ma .wg-ring{width:2.75em;height:2.75em}
+.wg-env-love{left:58.5%;width:26%;right:auto;top:63.5%;font-size:calc(var(--u)*2.7);line-height:1.18;text-align:center;transform:rotate(-2.5deg)}
+.wg-env-love .wg-poem{display:block;white-space:nowrap}
+.wg-env-love .wg-sign{display:flex;align-items:baseline;justify-content:center;gap:.7em;margin-top:.3em;font-size:.95em}
+.wg-env-love .wg-mirror{display:inline-block;transform:scaleX(-1);font:400 1.1em/1 "Pinyon Script","PB Hand",cursive;font-style:normal;opacity:.42;letter-spacing:.02em}
+.wg-env-glyphs{left:31%;width:14%;right:auto;top:74%;font-size:calc(var(--u)*3);justify-content:space-between}
+.wg-env-love{top:60.5%;line-height:1.12}
+.wg-env-love{left:59%;width:22%;top:61%;font-size:calc(var(--u)*2.5)}
+.wg-env-love .wg-sign{font-size:1em;margin-top:.35em;gap:.6em;color:#3a0503}
+.wg-env-love .wg-mirror{opacity:.62;font-size:1.25em;color:#4a0704}
+
+/* v4 poem block: sweetie, pen signature + blood heart, faint mirrored name; no ragged filter on the poem (cleaner ink) */
+.wg-env-love{filter:none;left:58%;width:25%;top:59.5%;font-size:calc(var(--u)*2.45);line-height:1.1;text-shadow:0 0 .6px rgba(60,5,3,.9),0 0 2px rgba(110,14,6,.28)}
+.wg-env-love .wg-sign{display:flex;align-items:center;justify-content:center;gap:.25em;margin-top:.2em}
+.wg-env-love .wg-sig-name{position:relative;font:400 1.75em/1 "Pinyon Script","PB Hand",cursive;font-style:normal;color:#2c0302;padding:0 .15em .1em}
+.wg-env-love .wg-flour{position:absolute;left:8%;right:-6%;bottom:-.22em;width:96%;height:.32em;fill:none;stroke:#2c0302;stroke-width:1.6;stroke-linecap:round;overflow:visible}
+.wg-env-love .wg-heart{width:.95em;height:.9em;fill:#7a0a08;stroke:#4a0504;stroke-width:1;transform:rotate(12deg) translateY(-.1em);filter:drop-shadow(0 0 .5px rgba(80,4,2,.8))}
+.wg-env-love .wg-mirror{display:block;width:max-content;margin:.15em 0 0 auto;transform:scaleX(-1) rotate(2deg);font:400 .95em/1 "Pinyon Script","PB Hand",cursive;font-style:normal;color:#4a0704;opacity:.45}
+
+.wg-env-love{top:57.5%;width:27%;left:57%}
+.wg-env-love .wg-flour{bottom:-.02em}
+.wg-env-love .wg-sign{gap:.3em}
+.wg-env-love .wg-mirror{display:inline-block;margin:0 0 0 .2em;font-size:.95em;opacity:.5;transform:scaleX(-1) rotate(-3deg) translateY(.35em)}
+.wg-env-love .wg-sign>*{flex:none}
+.wg-env-love .wg-sig-name{font-size:1.55em}
+.wg-env-love .wg-heart{width:.85em;height:.8em}
+.wg-env-love .wg-mirror{font-size:.85em;opacity:.55}
+.wg-env-love .wg-sign{position:relative;justify-content:center}
+.wg-env-love .wg-mirror{position:absolute;left:46%;top:96%;margin:0;font-size:.9em;opacity:.5;transform:scaleX(-1) rotate(-4deg)}
+
+/* v5: smouldering ember ink, ritual ink on the paper, glowing sigil grooves, candle-lit contrast */
+.wg-env-shade{position:absolute;inset:0;pointer-events:none;background:
+ radial-gradient(60% 55% at 50% 48%,rgba(255,150,60,.10),rgba(0,0,0,0) 60%),
+ radial-gradient(95% 85% at 50% 50%,rgba(0,0,0,0) 45%,rgba(12,2,0,.55) 100%),
+ linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,0) 30%,rgba(0,0,0,0) 70%,rgba(0,0,0,.22));mix-blend-mode:multiply}
+.wg-ritual{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;fill:none;stroke:#5a0a04;stroke-width:.16;stroke-linecap:round;stroke-linejoin:round;opacity:.62;mix-blend-mode:multiply;filter:drop-shadow(0 0 .35px rgba(255,90,20,.6))}
+.wg-ritual .t{stroke-width:.09;opacity:.75}
+.wg-ritual .f{fill:#5a0a04}
+.wg-ritual .gm .bg{fill:none;stroke:none}
+.wg-ritual .gm{stroke-width:.14}
+/* ember ink */
+@keyframes wgEmber{0%,100%{text-shadow:0 0 .5px #ff8a3a,0 0 2px rgba(255,110,30,.9),0 0 6px rgba(240,60,0,.55),0 0 14px rgba(170,25,0,.35)}
+ 37%{text-shadow:0 0 .5px #ffb060,0 0 2.6px rgba(255,140,40,1),0 0 8px rgba(255,80,10,.7),0 0 18px rgba(190,30,0,.45)}
+ 61%{text-shadow:0 0 .5px #ff7a2a,0 0 1.6px rgba(255,100,25,.75),0 0 5px rgba(220,50,0,.45),0 0 12px rgba(150,20,0,.3)}}
+.wg-env-to,.wg-env-ma b,.wg-env-love .wg-poem,.wg-env-love .wg-sig-name{color:#3a0401;animation:wgEmber 3.4s ease-in-out infinite}
+.wg-env-ma b{animation-delay:-1.1s}.wg-env-love .wg-poem{animation-delay:-2.2s}.wg-env-love .wg-sig-name{animation-delay:-.6s}
+.wg-env-to::before,.wg-env-ma::before,.wg-env-love::before{content:"";position:absolute;inset:-14% -8%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(70,20,0,.30),rgba(120,40,0,.12) 60%,rgba(0,0,0,0));filter:blur(4px);mix-blend-mode:multiply}
+.wg-env-to,.wg-env-ma,.wg-env-love{isolation:auto}
+.wg-env .wg-gl,.wg-env-ma .wg-ring{filter:drop-shadow(0 0 1.2px rgba(255,100,20,.85)) drop-shadow(0 0 3px rgba(200,40,0,.4))}
+.wg-env-ma .wg-ring{stroke:#5a0703;opacity:.9}
+.wg-env-love .wg-heart{margin-left:.45em;transform:rotate(14deg) translateY(-.35em);fill:#a0120a;filter:drop-shadow(0 0 2px rgba(255,60,20,.9)) drop-shadow(0 0 5px rgba(200,20,0,.5))}
+.wg-env-love .wg-mirror{text-shadow:0 0 3px rgba(255,90,20,.6)}
+/* sigil grooves glowing in the wax */
+.wg-env-seal .wg-sg{mix-blend-mode:screen;opacity:.55;filter:none;animation:wgGroove 3.8s ease-in-out infinite}
+@keyframes wgGroove{0%,100%{opacity:.4}45%{opacity:.75}70%{opacity:.5}}
+.wg-stage.is-crack .wg-sg{opacity:0;animation:none;transition:opacity .15s}
+/* drifting ember sparks */
+.wg-sparks{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.wg-sparks i{position:absolute;width:3px;height:3px;border-radius:50%;background:#ffb35a;box-shadow:0 0 4px 1px rgba(255,110,20,.9),0 0 9px rgba(255,60,0,.5);opacity:0;animation:wgSpark 6s linear infinite}
+@keyframes wgSpark{0%{opacity:0;transform:translate(0,0) scale(1)}10%{opacity:.95}70%{opacity:.5}100%{opacity:0;transform:translate(var(--dx,8px),-60px) scale(.3)}}
+.wg-sparks i:nth-child(1){left:24%;top:24%;animation-delay:-.4s;--dx:-6px}
+.wg-sparks i:nth-child(2){left:38%;top:22%;animation-delay:-2.1s;--dx:9px}
+.wg-sparks i:nth-child(3){left:66%;top:24%;animation-delay:-3.3s;--dx:5px}
+.wg-sparks i:nth-child(4){left:74%;top:30%;animation-delay:-4.6s;--dx:-8px}
+.wg-sparks i:nth-child(5){left:64%;top:64%;animation-delay:-1.2s;--dx:7px}
+.wg-sparks i:nth-child(6){left:76%;top:70%;animation-delay:-2.9s;--dx:-5px}
+.wg-sparks i:nth-child(7){left:70%;top:77%;animation-delay:-5.2s;--dx:10px}
+.wg-sparks i:nth-child(8){left:50%;top:36%;animation-delay:-3.8s;--dx:-4px}
+.wg-sparks i:nth-child(9){left:44%;top:60%;animation-delay:-.9s;--dx:6px}
+.wg-sparks i:nth-child(10){left:57%;top:40%;animation-delay:-4.1s;--dx:-9px}
+.wg-stage.is-split .wg-sparks,.wg-stage.is-split .wg-ritual,.wg-stage.is-split .wg-env-shade{opacity:0;transition:opacity .4s}
+@media (prefers-reduced-motion:reduce){.wg-sparks{display:none}.wg-env-to,.wg-env-ma b,.wg-env-love .wg-poem,.wg-env-love .wg-sig-name,.wg-env-seal .wg-sg{animation:none}}
+.wg-env-to,.wg-env-ma b,.wg-env-love .wg-poem,.wg-env-love .wg-sig-name{text-shadow:0 0 .5px #ff8a3a,0 0 2px rgba(255,110,30,.9),0 0 6px rgba(240,60,0,.55),0 0 14px rgba(170,25,0,.35)}
+
+.wg-ritual{stroke-width:.24;opacity:.8}
+.wg-ritual .t{stroke-width:.13}
+.wg-env-seal .wg-sg{opacity:.4}
+@keyframes wgGroove{0%,100%{opacity:.28}45%{opacity:.55}70%{opacity:.36}}
+.wg-env-love{top:56.3%}
+.wg-env-love{left:59.8%;width:23%;font-size:calc(var(--u)*2.3)}
+.wg-env-love{left:59.2%;width:22.6%;font-size:calc(var(--u)*2.18)}
+
+/* v6 typography: crisp dark-core ink, tight controlled ember glow, no ragged blur, roomy layout */
+.wg-env-to,.wg-env-ma,.wg-env-love{filter:none}
+.wg-env-to::before,.wg-env-ma::before,.wg-env-love::before{inset:-6% -4%;background:radial-gradient(closest-side,rgba(90,30,0,.16),rgba(0,0,0,0));filter:blur(6px)}
+@keyframes wgEmber{0%,100%{text-shadow:0 0 .4px rgba(255,140,60,.95),0 0 2.2px rgba(255,90,20,.55),0 0 5px rgba(210,40,0,.25)}
+ 40%{text-shadow:0 0 .4px rgba(255,170,80,1),0 0 2.6px rgba(255,110,30,.7),0 0 6px rgba(230,55,0,.32)}
+ 65%{text-shadow:0 0 .4px rgba(255,130,50,.85),0 0 1.8px rgba(255,80,15,.45),0 0 4.5px rgba(190,35,0,.2)}}
+.wg-env-to,.wg-env-ma b,.wg-env-love .wg-poem,.wg-env-love .wg-sig-name{color:#1f0100;-webkit-text-stroke:.15px #1f0100;text-shadow:0 0 .4px rgba(255,140,60,.95),0 0 2.2px rgba(255,90,20,.55),0 0 5px rgba(210,40,0,.25)}
+.wg-env-to{left:18.6%;width:30.4%;top:18%;font-size:calc(var(--u)*3.7);line-height:1.08;letter-spacing:.01em}
+.wg-env-to .wg-row{font-size:.62em;margin-top:.55em;gap:.9em}
+.wg-env-ma{left:60%;width:20%;top:27.5%;font-size:calc(var(--u)*4.9)}
+.wg-env-love{left:57.6%;width:26%;top:55.8%;font-size:calc(var(--u)*2.42);line-height:1.13;letter-spacing:.005em;font-family:"Fondamento","PB Hand",cursive;font-style:italic}
+.wg-env-love .wg-sign{margin-top:.15em;gap:0}
+.wg-env-love .wg-sig-name{font-size:2.05em;line-height:1.05;padding:0 .1em .15em;letter-spacing:.01em}
+.wg-env-love .wg-flour{bottom:.02em;height:.28em;stroke-width:1.3}
+.wg-env-love .wg-heart{width:.72em;height:.66em;margin-left:.35em;transform:rotate(12deg) translateY(-.05em)}
+.wg-env-love .wg-mirror{left:50%;top:92%;font-size:1.05em;color:#3a0402;opacity:.6;transform:translateX(-50%) scaleX(-1) rotate(-3deg);text-shadow:0 0 1.5px rgba(255,100,30,.45)}
+.wg-env-love{top:53.6%;line-height:1.1}.wg-env-love .wg-sig-name{font-size:1.9em}.wg-env-love .wg-mirror{top:84%;font-size:1em}
+.wg-env-love{left:60.4%;width:22.8%;top:52.4%;font-size:calc(var(--u)*2.32);line-height:1.08}.wg-env-love .wg-flour{display:none}.wg-env-love .wg-sig-name{padding-bottom:0}.wg-env-love .wg-mirror{top:80%;font-size:1.05em;opacity:.62}
+.wg-env-love .wg-mirror{top:104%}
+/* v7 legibility: near-black oxblood ink, heavier crisp strokes, thin static ember rim, lifted parchment behind text */
+.wg-env-to,.wg-env-ma b,.wg-env-love .wg-poem,.wg-env-love .wg-sig-name{animation:none;color:#170001;-webkit-text-stroke:.35px #170001;text-shadow:0 0 .7px rgba(255,125,45,.6),0 0 1.6px rgba(255,90,20,.22)}
+.wg-env-to::before,.wg-env-ma::before,.wg-env-love::before{inset:-4% -3%;background:radial-gradient(closest-side,rgba(255,236,200,.34),rgba(255,230,190,.16) 60%,rgba(0,0,0,0));filter:blur(8px);mix-blend-mode:screen}
+.wg-env-to{font-size:calc(var(--u)*3.95);font-weight:600;letter-spacing:.012em;left:18.2%;width:31%}
+.wg-env-to .wg-row{font-size:.55em;opacity:.95}
+.wg-env-ma b{font-weight:700}
+.wg-env-ma{font-size:calc(var(--u)*5.2);top:27.2%}
+.wg-env-love{font-family:"Fell","Garamond",serif;font-style:italic;font-weight:400;font-size:calc(var(--u)*2.62);line-height:1.1;left:59.8%;width:23.6%;top:51.6%}
+.wg-env-love .wg-poem{font-style:italic;letter-spacing:.008em}
+.wg-env-love .wg-sig-name{font-size:2.05em;-webkit-text-stroke:.55px #170001}
+.wg-env-love .wg-heart{width:.8em;height:.74em}
+.wg-env-love .wg-mirror{top:98%;font-size:1.05em;color:#2a0102;opacity:.6;-webkit-text-stroke:.2px #2a0102}
+.wg-env .wg-gl,.wg-env-ma .wg-ring{filter:drop-shadow(0 0 .7px rgba(255,110,30,.6))}
+.wg-env-ma .wg-ring{stroke:#3a0402}
+/* sparks only rise from the wax and the empty lower-left paper, never across text */
+.wg-sparks i:nth-child(1){left:44%;top:40%}.wg-sparks i:nth-child(2){left:52%;top:44%}.wg-sparks i:nth-child(3){left:57%;top:38%}
+.wg-sparks i:nth-child(4){left:47%;top:58%}.wg-sparks i:nth-child(5){left:24%;top:66%}.wg-sparks i:nth-child(6){left:36%;top:68%}
+.wg-sparks i:nth-child(7){left:42%;top:64%}.wg-sparks i:nth-child(8){left:50%;top:62%}.wg-sparks i:nth-child(9){left:28%;top:58%}.wg-sparks i:nth-child(10){left:54%;top:52%}
+.wg-sparks i{--dx:0px}
+@keyframes wgSpark{0%{opacity:0;transform:translate(0,0) scale(1)}10%{opacity:.95}70%{opacity:.5}100%{opacity:0;transform:translate(var(--dx,0px),-34px) scale(.3)}}
+.wg-env-love{top:50.2%}.wg-env-love .wg-mirror{top:90%;font-size:.95em}
+
+/* v8 refined typography */
+.wg-env-to,.wg-env-ma b,.wg-env-love .wg-poem,.wg-env-love .wg-sig-name{
+ color:#1a0001;background:linear-gradient(170deg,#120001 0%,#2a0303 38%,#160001 55%,#2e0505 78%,#140001 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+ -webkit-text-stroke:.3px rgba(22,0,1,.85);text-shadow:0 0 .5px rgba(40,4,2,.55),0 0 1.4px rgba(255,120,40,.32)}
+.wg-env-to{left:17.6%;width:30.4%;top:20.2%;font:500 calc(var(--u)*3.75)/1.12 "Grenze Gotisch","Unifraktur",serif;letter-spacing:.022em;font-kerning:normal;text-align:center;transform:rotate(-1.2deg)}
+.wg-env-to .wg-uflour{display:block;width:62%;height:.42em;margin:.12em auto 0;fill:none;stroke:#2a0303;stroke-width:1.3;stroke-linecap:round;overflow:visible;filter:drop-shadow(0 0 .6px rgba(255,110,30,.45))}
+.wg-env-to .wg-uflour circle{fill:#2a0303;stroke:none}
+.wg-env-to .wg-row{font-size:.5em;margin-top:.5em;gap:1.1em}
+.wg-env-ma{left:60.2%;width:19.5%;top:26.6%;justify-content:center}
+.wg-env-ma b{font:600 calc(var(--u)*4.6)/1 "Grenze Gotisch","Unifraktur",serif;letter-spacing:.06em;padding-left:.06em;transform:translateY(-.04em)}
+.wg-env-love{left:58.6%;width:22.4%;top:50.4%;font:italic 400 calc(var(--u)*2.42)/1.24 "Fell Pica","Fell","Garamond",serif;letter-spacing:.006em;text-align:center}
+.wg-env-love .wg-poem{font-style:italic}
+.wg-env-love .wg-ini{font:400 1.55em/0.8 "Unifraktur","Grenze Gotisch",serif;font-style:normal;margin-right:.02em;vertical-align:-.08em}
+.wg-env-love .wg-sign{position:relative;left:-1.6%;justify-content:center;margin-top:.05em}
+.wg-env-love .wg-sig-name{font:400 2.15em/1.15 "Pinyon Script","PB Hand",cursive;font-style:normal;-webkit-text-stroke:.45px rgba(22,0,1,.9);padding:0 .12em}
+.wg-env-love .wg-heart{width:.78em;height:.72em;margin-left:.15em;transform:rotate(12deg) translateY(-.15em)}
+.wg-env-love .wg-mirror{top:86%;left:46%;font-size:1.05em;opacity:.5}
+.wg-env-love .wg-ini{display:inline;font-size:1.5em;line-height:0;vertical-align:-.06em}.wg-env-love .wg-mirror{top:84%}
+.wg-env-love .wg-poem,.wg-env-love .wg-sig-name{background:none;-webkit-text-fill-color:#1a0001;color:#1a0001}.wg-env-love .wg-ini{-webkit-text-fill-color:#4a0503;color:#4a0503;-webkit-text-stroke:.3px #3a0302;line-height:1}
+.wg-env-love{left:60.4%;width:22.2%;font-size:calc(var(--u)*2.34);top:51%}.wg-env-love .wg-sign{left:-3%}
 /* ---- gate D: sealed vellum letter (break the seal to read; her letter writes itself) ---- */
 .pb-wg{background:#030101!important}
 .pb-wg .wg-bg,.pb-wg .wg-circle,.pb-wg .wg-corner,.pb-wg .wg-drift,.pb-wg .wg-flame,.pb-wg .wg-vig{position:absolute;pointer-events:none}
@@ -7513,3 +7697,54 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-env-love .wg-ini{display:inline;font-size:1.5em;line-height:0;vertical-align:-.06em}.wg-env-love .wg-mirror{top:84%}
 .wg-env-love .wg-poem,.wg-env-love .wg-sig-name{background:none;-webkit-text-fill-color:#1a0001;color:#1a0001}.wg-env-love .wg-ini{-webkit-text-fill-color:#4a0503;color:#4a0503;-webkit-text-stroke:.3px #3a0302;line-height:1}
 .wg-env-love{left:60.4%;width:22.2%;font-size:calc(var(--u)*2.34);top:51%}.wg-env-love .wg-sign{left:-3%}
+
+/* ---- gate D library: altar approach ---- */
+.wg-lib{position:absolute;inset:0;z-index:1;overflow:hidden;background:#030101}
+.wg-lib-stage{position:absolute;left:50%;top:50%;width:max(100vw,177.777vh);height:max(56.25vw,100vh);transform:translate(-50%,-50%);transform-origin:50% 50%}
+.wg-plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;user-select:none}
+.wg-p01{opacity:1;transform:scale(1);transform-origin:50% 54%;transition:transform 1.75s cubic-bezier(.42,.02,.18,1),opacity .7s ease}
+.wg-p02,.wg-p03{opacity:0;transition:opacity .85s ease}
+.wg-lib[data-lib="dolly"] .wg-p01{transform:scale(1.42)}
+.wg-lib[data-lib="dolly"] .wg-p02{opacity:1;transition-delay:1s;transition-duration:0.8s}
+.wg-lib[data-lib="approach"] .wg-p01{opacity:0;transform:scale(1.42);transition-duration:.45s}
+.wg-lib[data-lib="approach"] .wg-p02{opacity:1;transition:none}
+.wg-lib[data-lib="mid"] .wg-p01{transform:scale(1.22);opacity:.55;transition:none}
+.wg-lib[data-lib="mid"] .wg-p02{opacity:.85;transition:none}
+.wg-lib[data-lib="open"] .wg-p01,.wg-lib[data-lib="open"] .wg-p02{opacity:0;transform:scale(1);transition:opacity .8s ease}
+.wg-lib[data-lib="open"] .wg-p03{opacity:1;transition:opacity .9s ease}
+.wg-book-ink{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:multiply;opacity:0;transition:opacity .9s ease}
+.wg-book-ink.is-shown{opacity:1}
+.wg-hot{position:absolute;z-index:3;padding:0;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wg-hot:focus{outline:none}
+.wg-hot:focus-visible{outline:2px solid rgba(201,164,106,.75);outline-offset:4px}
+.wg-hot-altar{left:18%;top:16%;width:48%;height:72%;z-index:3}
+.wg-hot-letter{left:56.2%;top:40%;width:26%;height:51%;z-index:4}
+.wg-lib[data-lib="dolly"] .wg-hot-altar,
+.wg-lib[data-lib="approach"] .wg-hot-altar,
+.wg-lib[data-lib="open"] .wg-hot-altar,
+.wg-lib[data-lib="mid"] .wg-hot-altar{left:24%;top:15%;width:38%;height:70%}
+.wg-lib[data-lib="dolly"] .wg-hot-letter,
+.wg-lib[data-lib="approach"] .wg-hot-letter,
+.wg-lib[data-lib="open"] .wg-hot-letter,
+.wg-lib[data-lib="mid"] .wg-hot-letter{left:58%;top:44%;width:31%;height:52%}
+.wg-lib-hint{position:absolute;left:0;right:0;bottom:7.5%;z-index:5;margin:0;text-align:center;pointer-events:none;font:italic clamp(.92rem,1.4vw,1.15rem)/1.35 "Fell",Georgia,serif;letter-spacing:.12em;color:#e4c48a;text-shadow:0 0 18px #000,0 1px 3px #000,0 0 2px #000;opacity:.92;transition:opacity 1.15s ease,transform 1.15s ease}
+.wg-lib-hint span{display:inline-block;padding:0 .9em}
+.wg-lib-hint span::before,.wg-lib-hint span::after{content:"";display:inline-block;width:2.4em;height:1px;margin:0 .85em;vertical-align:middle;background:linear-gradient(90deg,transparent,#c9a46a,transparent);opacity:.75}
+.wg-lib-hint.is-gone,.wg-lib[data-lib="approach"] .wg-lib-hint,
+.wg-lib[data-lib="open"] .wg-lib-hint,.wg-lib[data-lib="dolly"] .wg-lib-hint{opacity:0;transform:translateY(.4em);pointer-events:none}
+.wg-lib-vig{position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse 62% 58% at 50% 48%,transparent 40%,rgba(0,0,0,.45) 100%)}
+.wg-lib.is-dim{filter:brightness(.42) saturate(.9);pointer-events:none}
+.pb-wg.is-lettering .wg-scroll{z-index:6}
+.pb-wg:has(.wg-lib) > .wg-bg,
+.pb-wg:has(.wg-lib) > .wg-circle,
+.pb-wg:has(.wg-lib) > .wg-corner,
+.pb-wg:has(.wg-lib) > .wg-drift,
+.pb-wg:has(.wg-lib) > .wg-flame{display:none}
+.pb-wg:has(.wg-lib) .wg-scroll{background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(8,2,2,.2),rgba(5,2,2,.55) 70%)}
+.pb-wg:has(.wg-lib):not(.is-lettering) .wg-scroll{background:transparent}
+@media (prefers-reduced-motion:reduce){
+  .wg-p01,.wg-p02,.wg-p03,.wg-book-ink,.wg-lib-hint{transition:none!important}
+  .wg-lib[data-lib="dolly"] .wg-p01,.wg-lib[data-lib="approach"] .wg-p01{transform:none}
+}
+.wg-lib.is-dim .wg-hot,.pb-wg.is-lettering .wg-hot{outline:none;visibility:hidden;pointer-events:none}
+/* ---- /gate D library ---- */

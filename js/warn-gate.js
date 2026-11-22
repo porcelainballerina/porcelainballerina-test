@@ -24,11 +24,54 @@
   const d = document.createElement('div');
   d.className = 'pb-wg';
   d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true');
-  d.setAttribute('aria-label', 'A sealed letter at the door');
+  d.setAttribute('aria-label', 'The library at the door');
   const img = new URL('../images/gate/', SELF).href;
+  const lib = new URL('../images/gate-library/', SELF).href;
   d.setAttribute('style', `--alt:url('${img}altar-wide.webp');--alt-sm:url('${img}altar-wide-sm.webp');--alt-t:url('${img}altar-tall.webp');--circ:url('${img}circle.jpg');--circ-sm:url('${img}circle-sm.jpg');--corner:url('${img}corner.jpg')`);
-  const tpl = `<span class="wg-bg" aria-hidden="true"></span><span class="wg-circle" aria-hidden="true"><i></i></span><span class="wg-corner wg-c1" aria-hidden="true"></span><span class="wg-corner wg-c2" aria-hidden="true"></span><span class="wg-corner wg-c3" aria-hidden="true"></span><span class="wg-corner wg-c4" aria-hidden="true"></span><span class="wg-drift" aria-hidden="true"><i></i><i></i><i></i></span><span class="wg-flame" aria-hidden="true"><i class="wg-g1"></i><i class="wg-g2"></i><i class="wg-g3"></i><i class="wg-g4"></i></span><span class="wg-vig" aria-hidden="true"></span><svg class="wg-defs" aria-hidden="true" width="0" height="0" style="position:absolute"><filter id="wg-rag" x="-40%" y="-40%" width="180%" height="180%"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
-  <div class="wg-scroll"><div class="wg-inner">
+  const tpl = `<div class="wg-lib" data-lib="far">
+    <div class="wg-lib-stage">
+      <img class="wg-plate wg-p01" src="${lib}01-distance-closed.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high">
+      <img class="wg-plate wg-p02" src="${lib}02-approach.webp" alt="" width="1920" height="1080" decoding="async">
+      <img class="wg-plate wg-p03" src="${lib}03-book-open.webp" alt="" width="1920" height="1080" decoding="async">
+      <svg class="wg-book-ink" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="wgInkL" gradientUnits="userSpaceOnUse" x1="624" y1="0" x2="898" y2="0">
+      <stop offset="0" stop-color="#3a1c12"/>
+      <stop offset="0.7" stop-color="#24100a"/>
+      <stop offset="1" stop-color="#160a08"/>
+    </linearGradient>
+    <linearGradient id="wgInkR" gradientUnits="userSpaceOnUse" x1="1212" y1="0" x2="946" y2="0">
+      <stop offset="0" stop-color="#3a1c12"/>
+      <stop offset="0.7" stop-color="#24100a"/>
+      <stop offset="1" stop-color="#160a08"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#wgInkL)" font-family="Unifraktur, serif">
+    <text class="wg-ini" x="636" y="472" font-size="96" transform="rotate(1.00 636 472)">W</text>
+    <text x="748" y="468" text-anchor="start" font-size="54" transform="rotate(1.00 748 468)">elcome,</text>
+    <text x="776" y="538" text-anchor="middle" font-size="50" transform="rotate(1.27 776 538)">little one</text>
+  </g>
+  <g class="wg-swash" fill="none" stroke="url(#wgInkL)" stroke-width="1.7" stroke-linecap="round" transform="rotate(1.45 777.0 585.5)">
+    <path d="M 700.0 589.0 C 730.0 579.0, 741.0 586.5, 763.0 585.5 M 791.0 585.5 C 813.0 586.5, 824.0 582.0, 854.0 592.0"/>
+    <ellipse cx="777.0" cy="585.5" rx="6.5" ry="5" stroke-width="1.5"/>
+  </g>
+  <g fill="url(#wgInkR)" font-family="Fell, 'IM Fell English', Georgia, serif" font-style="italic">
+    <text x="1083.0" y="372.0" text-anchor="middle" font-size="18" transform="rotate(1.48 1083.0 372.0)">Hush now.</text>
+    <text x="1083.0" y="421.0" text-anchor="middle" font-size="18" transform="rotate(1.18 1083.0 421.0)">The lamps have learned your name.</text>
+    <text x="1083.0" y="468.0" text-anchor="middle" font-size="18" transform="rotate(0.90 1083.0 468.0)">The roses sleep, the wax still weeps.</text>
+    <text x="1083.0" y="514.0" text-anchor="middle" font-size="18" transform="rotate(0.62 1083.0 514.0)">Come closer, child, and read with me</text>
+    <text x="1083.0" y="560.0" text-anchor="middle" font-size="18" transform="rotate(0.35 1083.0 560.0)">the vow this waiting darkness keeps.</text>
+    <text x="1083.0" y="605.0" text-anchor="middle" font-size="18" transform="rotate(0.07 1083.0 605.0)">I saved this page for you, sweetie.</text>
+  </g>
+</svg>
+    </div>
+    <button type="button" class="wg-hot wg-hot-altar" aria-label="Approach the altar"></button>
+    <button type="button" class="wg-hot wg-hot-letter" aria-label="Open the sealed letter"></button>
+    <p class="wg-lib-hint"><span>Touch the altar to approach</span></p>
+    <span class="wg-lib-vig" aria-hidden="true"></span>
+  </div>
+  <svg class="wg-defs" aria-hidden="true" width="0" height="0" style="position:absolute"><filter id="wg-rag" x="-40%" y="-40%" width="180%" height="180%"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+  <div class="wg-scroll" hidden><div class="wg-inner">
     <p class="wg-kicker">Something was left at the door</p>
     <div class="wg-stage">
       <button type="button" class="wg-env" aria-describedby="pbwg-to pbwg-cta">
@@ -144,7 +187,44 @@
       if (e.shiftKey && (document.activeElement === first || !d.contains(document.activeElement) || document.activeElement === title)) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
-    try { env.focus({ preventScroll: true, focusVisible: false }); } catch (e) { env.focus(); }
+    const libRoot = d.querySelector('.wg-lib');
+    const libHint = d.querySelector('.wg-lib-hint');
+    const scroll = d.querySelector('.wg-scroll');
+    const altarBtn = d.querySelector('.wg-hot-altar');
+    const letterBtn = d.querySelector('.wg-hot-letter');
+    const inkSvg = d.querySelector('.wg-book-ink');
+    const revealLetter = () => {
+      if (d.classList.contains('is-lettering')) return;
+      if (libHint) libHint.classList.add('is-gone');
+      d.classList.add('is-lettering');
+      if (libRoot) libRoot.classList.add('is-dim');
+      if (scroll) scroll.hidden = false;
+      try { env.focus({ preventScroll: true, focusVisible: false }); } catch (e) { env.focus(); }
+    };
+    const approach = () => {
+      if (!libRoot) return;
+      const st = libRoot.getAttribute('data-lib');
+      if (st !== 'far') return;
+      if (libHint) libHint.classList.add('is-gone');
+      altarBtn && (altarBtn.disabled = true);
+      if (RM()) {
+        libRoot.setAttribute('data-lib', 'open');
+        inkSvg && inkSvg.classList.add('is-shown');
+        try { letterBtn.focus({ preventScroll: true, focusVisible: false }); } catch (e) {}
+        return;
+      }
+      libRoot.setAttribute('data-lib', 'dolly');
+      later(() => {
+        libRoot.setAttribute('data-lib', 'approach');
+        later(() => {
+          libRoot.setAttribute('data-lib', 'open');
+          later(() => { inkSvg && inkSvg.classList.add('is-shown'); }, 300);
+        }, 880);
+      }, 1750);
+    };
+    if (altarBtn) altarBtn.addEventListener('click', approach);
+    if (letterBtn) letterBtn.addEventListener('click', revealLetter);
+    try { altarBtn.focus({ preventScroll: true, focusVisible: false }); } catch (e) { altarBtn && altarBtn.focus(); }
   };
   // The wards page is protective only and is linked from the gate itself, so it opens without the gate;
   // leaving it for any other page (in-site navigation) still raises the gate until it is accepted.
