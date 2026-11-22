@@ -7699,7 +7699,7 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-env-love{left:60.4%;width:22.2%;font-size:calc(var(--u)*2.34);top:51%}.wg-env-love .wg-sign{left:-3%}
 
 /* ---- gate D library: altar approach ---- */
-.wg-lib{position:absolute;inset:0;z-index:1;overflow:hidden;background:#030101}
+.wg-lib{position:absolute;inset:0;z-index:1;overflow:hidden;background:#030101;transition:filter .7s ease}
 .wg-lib-stage{position:absolute;left:50%;top:50%;width:max(100vw,177.777vh);height:max(56.25vw,100vh);transform:translate(-50%,-50%);transform-origin:50% 50%}
 .wg-plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;user-select:none}
 .wg-p01{opacity:1;transform:scale(1);transform-origin:50% 54%;transition:transform 1.75s cubic-bezier(.42,.02,.18,1),opacity .7s ease}
@@ -7742,9 +7742,59 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .pb-wg:has(.wg-lib) > .wg-flame{display:none}
 .pb-wg:has(.wg-lib) .wg-scroll{background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(8,2,2,.2),rgba(5,2,2,.55) 70%)}
 .pb-wg:has(.wg-lib):not(.is-lettering) .wg-scroll{background:transparent}
+.wg-p04,.wg-p05,.wg-p06,.wg-p07{opacity:0;transition:opacity .75s ease}
+.wg-p05{transform:scale(1);transform-origin:50% 23%;transition:transform 2.15s cubic-bezier(.42,.02,.18,1),opacity .8s ease}
+.wg-p06,.wg-p07{transform:scale(1);transform-origin:50% 46%;transition:transform 1.6s cubic-bezier(.42,.02,.18,1),opacity .9s ease}
+@keyframes wgFlicker{
+  0%,100%{filter:brightness(1)}
+  16%{filter:brightness(1.07)}
+  34%{filter:brightness(.95)}
+  52%{filter:brightness(1.08)}
+  76%{filter:brightness(.97)}
+}
+.wg-lib[data-lib="closing"] .wg-p01,
+.wg-lib[data-lib="closing"] .wg-p02{opacity:0;transition:opacity .4s ease}
+.wg-lib[data-lib="closing"] .wg-p03{opacity:1}
+.wg-lib[data-lib="closing"] .wg-p04{opacity:1;transition:opacity .7s ease}
+.wg-lib[data-lib="closing"] .wg-book-ink{opacity:0;transition:opacity .45s ease}
+.wg-lib[data-lib="closing"] .wg-lib-stage{animation:wgFlicker 1.15s ease-in-out 1}
+.wg-lib[data-lib="shut"] .wg-p01,
+.wg-lib[data-lib="shut"] .wg-p02,
+.wg-lib[data-lib="shut"] .wg-p03{opacity:0;transition:opacity .55s ease}
+.wg-lib[data-lib="shut"] .wg-p04{opacity:1}
+.wg-lib[data-lib="shut"] .wg-p05{opacity:1;transition:opacity .7s ease}
+.wg-lib[data-lib="shut"] .wg-book-ink{opacity:0;transition:none}
+.wg-lib[data-lib="shut"] .wg-lib-stage{animation:wgFlicker 1s ease-in-out 1}
+.wg-lib[data-lib="to-her"] .wg-p01,
+.wg-lib[data-lib="to-her"] .wg-p02,
+.wg-lib[data-lib="to-her"] .wg-p03,
+.wg-lib[data-lib="to-her"] .wg-p04{opacity:0}
+.wg-lib[data-lib="to-her"] .wg-p05{opacity:0;transform:scale(1.72);transition:transform 2.15s cubic-bezier(.42,.02,.18,1),opacity 1.05s ease .85s}
+.wg-lib[data-lib="to-her"] .wg-p06{opacity:1;transition:opacity 1.05s ease .55s}
+.wg-lib[data-lib="to-her"] .wg-book-ink{opacity:0}
+.wg-lib[data-lib="near"] .wg-p01,
+.wg-lib[data-lib="near"] .wg-p02,
+.wg-lib[data-lib="near"] .wg-p03,
+.wg-lib[data-lib="near"] .wg-p04,
+.wg-lib[data-lib="near"] .wg-p05{opacity:0;transform:none}
+.wg-lib[data-lib="near"] .wg-p06{opacity:0;transform:scale(1.12);transition:transform 1.6s cubic-bezier(.42,.02,.18,1),opacity .85s ease}
+.wg-lib[data-lib="near"] .wg-p07{opacity:1;transform:scale(1.04);transition:transform 1.6s cubic-bezier(.42,.02,.18,1),opacity .9s ease .15s}
+.wg-lib[data-lib="near"] .wg-book-ink{opacity:0}
+.wg-lib[data-lib="mid-her"] .wg-p01,
+.wg-lib[data-lib="mid-her"] .wg-p02,
+.wg-lib[data-lib="mid-her"] .wg-p03,
+.wg-lib[data-lib="mid-her"] .wg-p04,
+.wg-lib[data-lib="mid-her"] .wg-p05{opacity:0;transition:none;transform:none}
+.wg-lib[data-lib="mid-her"] .wg-p06{opacity:1;transition:none;transform:none}
+.wg-lib[data-lib="mid-her"] .wg-book-ink{opacity:0;transition:none}
+.pb-wg.is-returning .wg-scroll{opacity:0;pointer-events:none;transition:opacity .7s ease}
+.pb-wg.is-returning .wg-hot{outline:none;visibility:hidden;pointer-events:none}
 @media (prefers-reduced-motion:reduce){
-  .wg-p01,.wg-p02,.wg-p03,.wg-book-ink,.wg-lib-hint{transition:none!important}
-  .wg-lib[data-lib="dolly"] .wg-p01,.wg-lib[data-lib="approach"] .wg-p01{transform:none}
+  .wg-p01,.wg-p02,.wg-p03,.wg-p04,.wg-p05,.wg-p06,.wg-p07,.wg-book-ink,.wg-lib-hint{transition:none!important}
+  .wg-lib[data-lib="dolly"] .wg-p01,.wg-lib[data-lib="approach"] .wg-p01,
+  .wg-lib[data-lib="to-her"] .wg-p05,.wg-lib[data-lib="near"] .wg-p06,.wg-lib[data-lib="near"] .wg-p07{transform:none}
+  .wg-lib[data-lib="closing"] .wg-lib-stage,
+  .wg-lib[data-lib="shut"] .wg-lib-stage{animation:none}
 }
 .wg-lib.is-dim .wg-hot,.pb-wg.is-lettering .wg-hot{outline:none;visibility:hidden;pointer-events:none}
 /* ---- /gate D library ---- */

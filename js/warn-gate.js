@@ -33,6 +33,10 @@
       <img class="wg-plate wg-p01" src="${lib}01-distance-closed.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high">
       <img class="wg-plate wg-p02" src="${lib}02-approach.webp" alt="" width="1920" height="1080" decoding="async">
       <img class="wg-plate wg-p03" src="${lib}03-book-open.webp" alt="" width="1920" height="1080" decoding="async">
+      <img class="wg-plate wg-p04" src="${lib}04-book-closing.webp" alt="" width="1920" height="1080" decoding="async">
+      <img class="wg-plate wg-p05" src="${lib}05-book-closed.webp" alt="" width="1920" height="1080" decoding="async">
+      <img class="wg-plate wg-p06" src="${lib}06-mid-ballerina.webp" alt="" width="1920" height="1080" decoding="async">
+      <img class="wg-plate wg-p07" src="${lib}07-close-ballerina.webp" alt="" width="1920" height="1080" decoding="async">
       <svg class="wg-book-ink" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <defs>
     <linearGradient id="wgInkL" gradientUnits="userSpaceOnUse" x1="624" y1="0" x2="898" y2="0">
@@ -106,7 +110,7 @@
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
   const mount = () => {
     timers.forEach(clearTimeout); timers = [];
-    d.innerHTML = tpl; d.classList.remove('is-signed', 'is-leaving', 'is-open');
+    d.innerHTML = tpl; d.classList.remove('is-signed', 'is-leaving', 'is-open', 'is-lettering', 'is-returning');
     document.body.appendChild(d);
     root.classList.add('pb-gate-open');
     root.classList.remove('pb-gate');
@@ -155,15 +159,32 @@
       d.classList.toggle('is-signed', ok.checked);
       hint.textContent = ok.checked ? 'She heard you. The door is open.' : 'Seal your mark above to open the door.';
     });
-    const enter = () => {
-      if (!ok.checked) return;
-      try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+    const leaveGate = () => {
       kids.forEach(e => e.removeAttribute('inert'));
       root.classList.remove('pb-gate-open');
       d.classList.add('is-leaving');
-      const rm = () => d.remove();
-      if (RM()) rm(); else setTimeout(rm, 700);
+      const rm = () => { if (d.isConnected) d.remove(); };
+      if (RM()) rm(); else later(rm, 800);
       document.dispatchEvent(new CustomEvent('pb:warned'));
+    };
+    const startOutro = () => {
+      d.classList.remove('is-lettering');
+      d.classList.add('is-returning');
+      if (libRoot) libRoot.classList.remove('is-dim');
+      if (scroll) { scroll.hidden = false; scroll.style.pointerEvents = 'none'; }
+      inkSvg && inkSvg.classList.remove('is-shown');
+      later(() => libRoot && libRoot.setAttribute('data-lib', 'closing'), 180);
+      later(() => libRoot && libRoot.setAttribute('data-lib', 'shut'), 1100);
+      later(() => libRoot && libRoot.setAttribute('data-lib', 'to-her'), 2000);
+      later(() => libRoot && libRoot.setAttribute('data-lib', 'near'), 3900);
+      later(leaveGate, 5400);
+    };
+    const enter = () => {
+      if (!ok.checked) return;
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+      btn.disabled = true;
+      if (RM() || !libRoot) { leaveGate(); return; }
+      startOutro();
     };
     btn.addEventListener('click', enter);
     // leaving for the wards page lowers the gate without signing it; any other page raises it again
