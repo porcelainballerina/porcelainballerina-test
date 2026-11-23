@@ -20,7 +20,7 @@
     .join('<span class="pw-orn" aria-hidden="true">&#10022;</span>');
   const gateLines = GATE.filter(l => l !== '\u2014 M.A.');
   const short = '<p class="pw-st wg-short">' + gateLines.map(l => line(l, true)).join('<br>') + '</p>';
-  const INK_STEP = 600, INK_DUR = 1300;
+  const INK_STEP = 420, INK_DUR = 1100;
   const fullHref = new URL('../gallery.html#warning', SELF).href;
   const d = document.createElement('div');
   d.className = 'pb-wg';
@@ -28,6 +28,8 @@
   d.setAttribute('aria-label', 'The library at the door');
   const img = new URL('../images/gate/', SELF).href;
   const lib = new URL('../images/gate-library/', SELF).href;
+  const GATE_V = '1795459000';
+  const plate = (name, cls, extra) => `<img class="wg-plate ${cls}" src="${lib}${name}.webp?v=${GATE_V}" alt="" width="1920" height="1080" decoding="async"${extra || ''}>`;
   d.setAttribute('style', `--alt:url('${img}altar-wide.webp');--alt-sm:url('${img}altar-wide-sm.webp');--alt-t:url('${img}altar-tall.webp');--circ:url('${img}circle.jpg');--circ-sm:url('${img}circle-sm.jpg');--corner:url('${img}corner.jpg')`);
   const tpl = `<svg class="wg-ink-defs" aria-hidden="true" focusable="false" width="0" height="0">
   <defs>
@@ -46,13 +48,13 @@
   </defs>
 </svg><div class="wg-lib" data-lib="far">
     <div class="wg-lib-stage">
-      <img class="wg-plate wg-p01" src="${lib}01-distance-closed.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high">
-      <img class="wg-plate wg-p02" src="${lib}02-approach.webp" alt="" width="1920" height="1080" decoding="async">
-      <img class="wg-plate wg-p03" src="${lib}03-book-open.webp" alt="" width="1920" height="1080" decoding="async">
-      <img class="wg-plate wg-p04" src="${lib}04-book-closing.webp" alt="" width="1920" height="1080" decoding="async">
-      <img class="wg-plate wg-p05" src="${lib}05-book-closed.webp" alt="" width="1920" height="1080" decoding="async">
-      <img class="wg-plate wg-p06" src="${lib}06-mid-ballerina.webp" alt="" width="1920" height="1080" decoding="async">
-      <img class="wg-plate wg-p07" src="${lib}07-close-ballerina.webp" alt="" width="1920" height="1080" decoding="async">
+      ${plate('01-distance-closed','wg-p01',' fetchpriority="high"')}
+      ${plate('02-approach','wg-p02')}
+      ${plate('03-book-open','wg-p03')}
+      ${plate('04-book-closing','wg-p04')}
+      ${plate('05-book-closed','wg-p05')}
+      ${plate('06-mid-ballerina','wg-p06')}
+      ${plate('07-close-ballerina','wg-p07')}
       <svg class="wg-book-ink" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
   <defs>
     <linearGradient id="wgInkL" gradientUnits="userSpaceOnUse" x1="620" y1="0" x2="900" y2="0">
@@ -170,6 +172,13 @@
   </div></div>`;
   let keyWired = false, timers = [];
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  const onTap = (el, fn) => {
+    if (!el) return;
+    let last = 0;
+    const go = (e) => { const n = Date.now(); if (n - last < 450) return; last = n; fn(e); };
+    el.addEventListener('pointerup', e => { if (e.button) return; go(e); });
+    el.addEventListener('click', go);
+  };
   const mount = () => {
     timers.forEach(clearTimeout); timers = [];
     d.innerHTML = tpl; d.classList.remove('is-signed', 'is-leaving', 'is-open', 'is-lettering', 'is-returning', 'is-with-her', 'is-admitted');
@@ -190,12 +199,16 @@
       sheet.classList.add('is-inked');
       after.hidden = false;
       d.classList.add('is-read');
+      later(() => {
+        const mark = d.querySelector('.wg-sign') || after;
+        try { mark.scrollIntoView({ block: 'center', behavior: RM() ? 'auto' : 'smooth' }); } catch (e) {}
+      }, 80);
     };
     const startInk = () => {
       ink.classList.add('is-inking');
       sheet.classList.add('is-inking');
       later(finish, (gateLines.length - 1) * INK_STEP + INK_DUR + 400);
-      sheet.addEventListener('click', e => { if (!read && !e.target.closest('a,button,input,label')) finish(); });
+      onTap(sheet, e => { if (!read && !(e.target && e.target.closest && e.target.closest('a,button,input,label'))) finish(); });
     };
     // --- opening: seal cracks, flap lifts, letter slides out and unfolds
     let opened = false;
@@ -211,13 +224,13 @@
       if (RM()) { showSheet(); finish(); return; }
       stage.classList.add('is-crack');
       d.classList.add('is-flare');
-      later(() => stage.classList.add('is-split'), 750);
-      later(() => stage.classList.add('is-out'), 2000);
-      later(() => { showSheet(); sheet.classList.add('is-unfold'); }, 2900);
-      later(startInk, 2900 + 1500);
+      later(() => stage.classList.add('is-split'), 600);
+      later(() => stage.classList.add('is-out'), 1700);
+      later(() => { showSheet(); sheet.classList.add('is-unfold'); }, 2300);
+      later(startInk, 2300 + 1100);
     };
-    env.addEventListener('click', open);
-    d.querySelector('.wg-cta').addEventListener('click', open);
+    onTap(env, open);
+    onTap(d.querySelector('.wg-cta'), open);
     ok.addEventListener('change', () => {
       d.classList.toggle('is-signed', ok.checked);
       if (!ok.checked) {
@@ -226,14 +239,14 @@
       }
       ok.disabled = true;
       if (hint) hint.textContent = 'She heard you. She is waiting.';
-      later(returnToHer, RM() ? 0 : 700);
+      later(returnToHer, RM() ? 0 : 180);
     });
     const leaveGate = () => {
       kids.forEach(e => e.removeAttribute('inert'));
       root.classList.remove('pb-gate-open');
       d.classList.add('is-leaving');
       const rm = () => { if (d.isConnected) d.remove(); };
-      if (RM()) rm(); else later(rm, 800);
+      if (RM()) rm(); else later(rm, 600);
       document.dispatchEvent(new CustomEvent('pb:warned'));
     };
     const showHer = () => {
@@ -260,10 +273,10 @@
       if (scroll) { scroll.hidden = false; scroll.style.pointerEvents = 'none'; }
       inkSvg && inkSvg.classList.remove('is-shown');
       if (RM() || !libRoot) { showHer(); return; }
-      later(() => libRoot && libRoot.setAttribute('data-lib', 'closing'), 180);
-      later(() => libRoot && libRoot.setAttribute('data-lib', 'shut'), 1100);
-      later(() => libRoot && libRoot.setAttribute('data-lib', 'to-her'), 2000);
-      later(showHer, 3900);
+      later(() => libRoot && libRoot.setAttribute('data-lib', 'closing'), 80);
+      later(() => libRoot && libRoot.setAttribute('data-lib', 'shut'), 600);
+      later(() => libRoot && libRoot.setAttribute('data-lib', 'to-her'), 1200);
+      later(showHer, 2200);
     };
     const approachHer = () => {
       if (!d.classList.contains('is-with-her') || d.classList.contains('is-admitted')) return;
@@ -273,7 +286,7 @@
       try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
       if (RM() || !libRoot) { leaveGate(); return; }
       libRoot.setAttribute('data-lib', 'near');
-      later(leaveGate, 1700);
+      later(leaveGate, 1000);
     };
     // leaving for the wards page lowers the gate without signing it; any other page raises it again
     unmount = () => { timers.forEach(clearTimeout); timers = []; kids.forEach(e => e.removeAttribute('inert')); root.classList.remove('pb-gate-open'); d.remove(); };
@@ -329,13 +342,22 @@
         libRoot.setAttribute('data-lib', 'approach');
         later(() => {
           libRoot.setAttribute('data-lib', 'open');
-          later(() => { inkSvg && inkSvg.classList.add('is-shown'); }, 300);
-        }, 880);
-      }, 1750);
+          later(() => { inkSvg && inkSvg.classList.add('is-shown'); }, 180);
+        }, 600);
+      }, 1100);
     };
-    if (altarBtn) altarBtn.addEventListener('click', approach);
-    if (letterBtn) letterBtn.addEventListener('click', revealLetter);
-    if (herBtn) herBtn.addEventListener('click', approachHer);
+    onTap(altarBtn, approach);
+    onTap(letterBtn, revealLetter);
+    onTap(herBtn, approachHer);
+    // Warm the later plates so the book-to-Ballerina cuts do not stall on a blank frame.
+    const warm = (name) => {
+      const l = document.createElement('link');
+      l.rel = 'preload'; l.as = 'image';
+      l.href = `${lib}${name}.webp?v=${GATE_V}`;
+      document.head.appendChild(l);
+    };
+    ['02-approach','03-book-open','04-book-closing','05-book-closed','06-mid-ballerina','07-close-ballerina'].forEach(warm);
+    d.querySelectorAll('.wg-plate').forEach(im => { try { im.decode && im.decode().catch(() => {}); } catch (e) {} });
     try { altarBtn.focus({ preventScroll: true, focusVisible: false }); } catch (e) { altarBtn && altarBtn.focus(); }
   };
   // The wards page is protective only and is linked from the gate itself, so it opens without the gate;

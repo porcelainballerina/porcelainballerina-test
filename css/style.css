@@ -7491,7 +7491,7 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .pb-wg .wg-d .wg-short .pw-l:first-of-type.pw-beat{text-align:left;letter-spacing:.02em}
 .pb-wg .wg-d .wg-short .pw-last{font-style:normal;color:#24150e;font-size:1.06em;margin-top:.9em}
 .pb-wg .wg-d .wg-ink .pw-l{opacity:1;clip-path:inset(-.2em 100% -.25em -.25em)}
-.pb-wg .wg-d .wg-ink.is-inking .pw-l{animation:wgQuillBlock 1.3s cubic-bezier(.18,.7,.2,1) both;animation-delay:calc(.35s + var(--i,0)*.6s)}
+.pb-wg .wg-d .wg-ink.is-inking .pw-l{animation:wgQuillBlock 1.1s cubic-bezier(.18,.7,.2,1) both;animation-delay:calc(.3s + var(--i,0)*.42s)}
 .pb-wg .wg-d .wg-ink.is-inked .pw-l{animation:none;clip-path:none;opacity:1}
 @keyframes wgQuillLine{0%{clip-path:inset(-.25em 100% -.25em -.3em)}100%{clip-path:inset(-.25em 0 -.25em -.3em)}}
 @keyframes wgQuillBlock{0%{clip-path:inset(-.2em -.3em 100% -.3em)}100%{clip-path:inset(-.2em -.3em -.25em -.3em)}}
@@ -7500,7 +7500,7 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .pb-wg .wg-d .wg-signhere{color:#24150e;font-family:"PB Hand","Fondamento",cursive}
 .pb-wg .wg-d .wg-label{color:#2a1810;font:400 1.1rem/1.5 "PB Hand","Fondamento",cursive}
 .pb-wg .wg-d .wg-after[hidden]{display:none}
-.pb-wg.is-read .wg-d .wg-after{animation:wgRise 1.2s ease-out both}
+.pb-wg.is-read .wg-d .wg-after{animation:wgRise .55s ease-out both}
 @keyframes wgRise{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
 .pb-wg .wg-d .wg-more{margin:1.2rem 0 0!important}
 .pb-wg .wg-d .wg-full-link{font:italic 1rem "Fell",serif;color:#4b0b06}
@@ -7707,19 +7707,19 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-lib{position:absolute;inset:0;z-index:1;overflow:hidden;background:#030101;transition:filter .7s ease}
 .wg-lib-stage{position:absolute;left:50%;top:50%;width:max(100vw,177.777vh);height:max(56.25vw,100vh);transform:translate(-50%,-50%);transform-origin:50% 50%}
 .wg-plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;user-select:none}
-.wg-p01{opacity:1;transform:scale(1);transform-origin:50% 54%;transition:transform 1.75s cubic-bezier(.42,.02,.18,1),opacity .7s ease}
-.wg-p02,.wg-p03{opacity:0;transition:opacity .85s ease}
+.wg-p01{opacity:1;transform:scale(1);transform-origin:50% 54%;transition:transform 1.15s cubic-bezier(.42,.02,.18,1),opacity .5s ease}
+.wg-p02,.wg-p03{opacity:0;transition:opacity .55s ease}
 .wg-lib[data-lib="dolly"] .wg-p01{transform:scale(1.42)}
-.wg-lib[data-lib="dolly"] .wg-p02{opacity:1;transition-delay:1s;transition-duration:0.8s}
+.wg-lib[data-lib="dolly"] .wg-p02{opacity:1;transition-delay:.5s;transition-duration:.55s}
 .wg-lib[data-lib="approach"] .wg-p01{opacity:0;transform:scale(1.42);transition-duration:.45s}
 .wg-lib[data-lib="approach"] .wg-p02{opacity:1;transition:none}
 .wg-lib[data-lib="mid"] .wg-p01{transform:scale(1.22);opacity:.55;transition:none}
 .wg-lib[data-lib="mid"] .wg-p02{opacity:.85;transition:none}
-.wg-lib[data-lib="open"] .wg-p01,.wg-lib[data-lib="open"] .wg-p02{opacity:0;transform:scale(1);transition:opacity .8s ease}
-.wg-lib[data-lib="open"] .wg-p03{opacity:1;transition:opacity .9s ease}
-.wg-book-ink{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:multiply;opacity:0;transition:opacity .9s ease}
+.wg-lib[data-lib="open"] .wg-p01,.wg-lib[data-lib="open"] .wg-p02{opacity:0;transform:scale(1);transition:opacity .5s ease}
+.wg-lib[data-lib="open"] .wg-p03{opacity:1;transition:opacity .6s ease}
+.wg-book-ink{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:multiply;opacity:0;transition:opacity .55s ease}
 .wg-book-ink.is-shown{opacity:1}
-.wg-hot{position:absolute;z-index:3;padding:0;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wg-hot{position:absolute;z-index:3;padding:0;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .wg-hot:focus{outline:none}
 .wg-hot:focus-visible{outline:2px solid rgba(201,164,106,.75);outline-offset:4px}
 .wg-hot-altar{left:18%;top:16%;width:48%;height:72%;z-index:3}
@@ -7747,9 +7747,9 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .pb-wg:has(.wg-lib) > .wg-flame{display:none}
 .pb-wg:has(.wg-lib) .wg-scroll{background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(8,2,2,.2),rgba(5,2,2,.55) 70%)}
 .pb-wg:has(.wg-lib):not(.is-lettering) .wg-scroll{background:transparent}
-.wg-p04,.wg-p05,.wg-p06,.wg-p07{opacity:0;transition:opacity .75s ease}
-.wg-p05{transform:scale(1);transform-origin:50% 23%;transition:transform 2.15s cubic-bezier(.42,.02,.18,1),opacity .8s ease}
-.wg-p06,.wg-p07{transform:scale(1);transform-origin:50% 46%;transition:transform 1.6s cubic-bezier(.42,.02,.18,1),opacity .9s ease}
+.wg-p04,.wg-p05,.wg-p06,.wg-p07{opacity:0;transition:opacity .5s ease}
+.wg-p05{transform:scale(1);transform-origin:50% 23%;transition:transform 1.4s cubic-bezier(.42,.02,.18,1),opacity .55s ease}
+.wg-p06,.wg-p07{transform:scale(1);transform-origin:50% 46%;transition:transform 1.1s cubic-bezier(.42,.02,.18,1),opacity .7s ease}
 @keyframes wgFlicker{
   0%,100%{filter:brightness(1)}
   16%{filter:brightness(1.07)}
@@ -7760,30 +7760,30 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-lib[data-lib="closing"] .wg-p01,
 .wg-lib[data-lib="closing"] .wg-p02{opacity:0;transition:opacity .4s ease}
 .wg-lib[data-lib="closing"] .wg-p03{opacity:1}
-.wg-lib[data-lib="closing"] .wg-p04{opacity:1;transition:opacity .7s ease}
+.wg-lib[data-lib="closing"] .wg-p04{opacity:1;transition:opacity .45s ease}
 .wg-lib[data-lib="closing"] .wg-book-ink{opacity:0;transition:opacity .45s ease}
-.wg-lib[data-lib="closing"] .wg-lib-stage{animation:wgFlicker 1.15s ease-in-out 1}
+.wg-lib[data-lib="closing"] .wg-lib-stage{animation:wgFlicker .7s ease-in-out 1}
 .wg-lib[data-lib="shut"] .wg-p01,
 .wg-lib[data-lib="shut"] .wg-p02,
 .wg-lib[data-lib="shut"] .wg-p03{opacity:0;transition:opacity .55s ease}
 .wg-lib[data-lib="shut"] .wg-p04{opacity:1}
-.wg-lib[data-lib="shut"] .wg-p05{opacity:1;transition:opacity .7s ease}
+.wg-lib[data-lib="shut"] .wg-p05{opacity:1;transition:opacity .45s ease}
 .wg-lib[data-lib="shut"] .wg-book-ink{opacity:0;transition:none}
-.wg-lib[data-lib="shut"] .wg-lib-stage{animation:wgFlicker 1s ease-in-out 1}
+.wg-lib[data-lib="shut"] .wg-lib-stage{animation:wgFlicker .65s ease-in-out 1}
 .wg-lib[data-lib="to-her"] .wg-p01,
 .wg-lib[data-lib="to-her"] .wg-p02,
 .wg-lib[data-lib="to-her"] .wg-p03,
 .wg-lib[data-lib="to-her"] .wg-p04{opacity:0}
-.wg-lib[data-lib="to-her"] .wg-p05{opacity:0;transform:scale(1.72);transition:transform 2.15s cubic-bezier(.42,.02,.18,1),opacity 1.05s ease .85s}
-.wg-lib[data-lib="to-her"] .wg-p06{opacity:1;transition:opacity 1.05s ease .55s}
+.wg-lib[data-lib="to-her"] .wg-p05{opacity:0;transform:scale(1.72);transition:transform 1.4s cubic-bezier(.42,.02,.18,1),opacity .7s ease .35s}
+.wg-lib[data-lib="to-her"] .wg-p06{opacity:1;transition:opacity .7s ease .2s}
 .wg-lib[data-lib="to-her"] .wg-book-ink{opacity:0}
 .wg-lib[data-lib="near"] .wg-p01,
 .wg-lib[data-lib="near"] .wg-p02,
 .wg-lib[data-lib="near"] .wg-p03,
 .wg-lib[data-lib="near"] .wg-p04,
 .wg-lib[data-lib="near"] .wg-p05{opacity:0;transform:none}
-.wg-lib[data-lib="near"] .wg-p06{opacity:0;transform:scale(1.12);transition:transform 1.6s cubic-bezier(.42,.02,.18,1),opacity .85s ease}
-.wg-lib[data-lib="near"] .wg-p07{opacity:1;transform:scale(1.04);transition:transform 1.6s cubic-bezier(.42,.02,.18,1),opacity .9s ease .15s}
+.wg-lib[data-lib="near"] .wg-p06{opacity:0;transform:scale(1.12);transition:transform 1.1s cubic-bezier(.42,.02,.18,1),opacity .6s ease}
+.wg-lib[data-lib="near"] .wg-p07{opacity:1;transform:scale(1.04);transition:transform 1.1s cubic-bezier(.42,.02,.18,1),opacity .7s ease .08s}
 .wg-lib[data-lib="near"] .wg-book-ink{opacity:0}
 .wg-lib[data-lib="mid-her"] .wg-p01,
 .wg-lib[data-lib="mid-her"] .wg-p02,
@@ -7793,7 +7793,7 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-lib[data-lib="mid-her"] .wg-p06{opacity:1;transition:none;transform:none}
 .wg-lib[data-lib="mid-her"] .wg-book-ink{opacity:0;transition:none}
 .pb-wg.is-returning .wg-scroll,
-.pb-wg.is-with-her .wg-scroll{opacity:0;pointer-events:none;transition:opacity .7s ease}
+.pb-wg.is-with-her .wg-scroll{opacity:0;pointer-events:none;transition:opacity .4s ease}
 .pb-wg.is-returning .wg-hot:not(.wg-hot-her),
 .pb-wg.is-with-her .wg-hot-altar,
 .pb-wg.is-with-her .wg-hot-letter{outline:none;visibility:hidden;pointer-events:none}
@@ -7802,7 +7802,7 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-hot-her{left:32%;top:3%;width:36%;height:72%;z-index:6;visibility:hidden;pointer-events:none}
 .wg-lib[data-lib="mid-her"] .wg-hot-her,
 .pb-wg.is-with-her:not(.is-admitted) .wg-hot-her{visibility:visible;pointer-events:auto}
-.wg-her-hint{position:absolute;left:0;right:0;bottom:7.5%;z-index:5;margin:0;text-align:center;pointer-events:none;font:italic clamp(.92rem,1.4vw,1.15rem)/1.35 "Fell",Georgia,serif;letter-spacing:.12em;color:#e4c48a;text-shadow:0 0 18px #000,0 1px 3px #000,0 0 2px #000;opacity:0;transform:translateY(.4em);transition:opacity 1.15s ease,transform 1.15s ease}
+.wg-her-hint{position:absolute;left:0;right:0;bottom:7.5%;z-index:5;margin:0;text-align:center;pointer-events:none;font:italic clamp(.92rem,1.4vw,1.15rem)/1.35 "Fell",Georgia,serif;letter-spacing:.12em;color:#e4c48a;text-shadow:0 0 18px #000,0 1px 3px #000,0 0 2px #000;opacity:0;transform:translateY(.4em);transition:opacity .45s ease,transform .45s ease}
 .wg-her-hint span{display:inline-block;padding:0 .9em}
 .wg-her-hint span::before,.wg-her-hint span::after{content:"";display:inline-block;width:2.4em;height:1px;margin:0 .85em;vertical-align:middle;background:linear-gradient(90deg,transparent,#c9a46a,transparent);opacity:.75}
 .wg-lib[data-lib="mid-her"] .wg-her-hint,
@@ -7810,7 +7810,7 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .wg-her-hint.is-gone,
 .wg-lib[data-lib="near"] .wg-her-hint,
 .pb-wg.is-admitted .wg-her-hint{opacity:0;transform:translateY(.4em);pointer-events:none}
-.wg-her-light{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;background:radial-gradient(ellipse 28% 42% at 50% 32%,rgba(255,230,180,.28),rgba(200,120,50,.08) 45%,transparent 72%);mix-blend-mode:screen;transition:opacity 1.25s ease}
+.wg-her-light{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;background:radial-gradient(ellipse 28% 42% at 50% 32%,rgba(255,230,180,.28),rgba(200,120,50,.08) 45%,transparent 72%);mix-blend-mode:screen;transition:opacity .8s ease}
 .wg-lib[data-lib="near"] .wg-her-light{opacity:1}
 .wg-lib[data-lib="near"] .wg-lib-stage{filter:brightness(1.08)}
 .wg-lib[data-lib="near"] .wg-lib-vig{background:radial-gradient(ellipse 48% 55% at 50% 38%,transparent 30%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.55) 100%)}
@@ -7827,4 +7827,5 @@ body:has(.ms-envelope.is-open) .ma-mark{
   .wg-lib[data-lib="shut"] .wg-lib-stage{animation:none}
 }
 .wg-lib.is-dim .wg-hot,.pb-wg.is-lettering .wg-hot{outline:none;visibility:hidden;pointer-events:none}
+.pb-wg .wg-env,.pb-wg .wg-sheet,.pb-wg .wg-label,.pb-wg .wg-cta{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 /* ---- /gate D library ---- */
