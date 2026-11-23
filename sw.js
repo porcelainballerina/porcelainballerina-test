@@ -2,7 +2,7 @@
 // Pages and data: network first (always the newest build when online), cache only as an offline fallback.
 // Versioned files (?v=1795458648): cache first. Every new build gets a new cache; old caches are deleted.
 const BUILD = '1795458648';
-const CACHE = 'pb-' + BUILD;
+const CACHE = 'pb-' + BUILD; // pages redeploy
 self.addEventListener('install', (e) => { self.skipWaiting(); });
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k.startsWith('pb-') && k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
