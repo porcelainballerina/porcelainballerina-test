@@ -328,7 +328,7 @@ function initPath(root) {
   const cur = root.querySelector('.ritual-path [aria-current="step"]');
   if (cur && !done.includes(cur.dataset.step)) { done.push(cur.dataset.step); try { localStorage.setItem('pb-path', JSON.stringify(done)); } catch (e) {} }
   root.querySelectorAll('.ritual-path li').forEach((li) => li.classList.toggle('is-done', done.includes(li.dataset.step)));
-  root.querySelectorAll('[data-replay-welcome]').forEach((b) => b.addEventListener('click', () => { location.href = new URL('./?welcome=1', ROOT).href; }));
+  root.querySelectorAll('[data-replay-welcome]').forEach((b) => b.addEventListener('click', () => { location.href = new URL('./', ROOT).href; }));
   root.querySelectorAll('[data-random-album]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); riteChoose(); }));
 }
 

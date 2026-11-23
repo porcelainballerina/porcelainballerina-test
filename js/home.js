@@ -1,6 +1,5 @@
-// Home: enter gate -> cinematic intro -> 3D hero; scroll fracture section.
+// Home: after the Ballerina gate, the site itself.
 import { reduceMotion, hasWebGL } from './env.js';
-import { playWelcome, seenWelcome } from './welcome.js';
 
 export async function init({ sound, smoke, embers, revealNow }) {
   const hero = document.querySelector('.hero');
@@ -28,20 +27,12 @@ export async function init({ sound, smoke, embers, revealNow }) {
 
   const reveal = () => { revealNow(heroCopy); };
   const params = new URLSearchParams(location.search);
-  const first = !seenWelcome() || params.has('welcome');
+  // The old welcome ritual (light a candle, wax seal, code 777) is no longer an entrance.
+  // ?welcome=1 used to replay it; that parameter is now ignored and stripped.
+  if (params.has('welcome')) history.replaceState(history.state, '', location.pathname + location.hash);
 
-  if (!first) {
-    // returning visitor: straight into the home page
-    await startHero(); reveal();
-  } else {
-    if (params.has('welcome')) history.replaceState(history.state, '', location.pathname + location.hash);
-    const heroReady = startHero();
-    await playWelcome({ sound });
-    document.body.style.overflow = '';
-    await heroReady;
-    moon && moon.restart();
-    reveal();
-  }
+  await startHero();
+  reveal();
   startCrackFx();
   return { destroy() { parts.forEach((p) => p && p.destroy && p.destroy()); document.querySelectorAll('.gate,.intro-layer,.wel').forEach((n) => n.remove()); document.body.style.overflow = ''; } };
 }
