@@ -1,6 +1,7 @@
 /* Porcelain Ballerina - warning gate. Client-side overlay only: crawlers and link previews see the page itself.
    Sealed letter: the visitor must break the seal (click / tap / Enter / Space) before the letter can be read;
-   the sign line and the Enter button appear only after the whole letter has been written out. */
+   the sign line appears only after the whole letter has been written out. After the mark is sealed, the book
+   closes and Ballerina herself is the way in — not a plain Enter button. */
 (() => {
   const KEY = 'pb-warned-d', TTL = 30 * 864e5, root = document.documentElement;
   const POEM = [["I did not write these to be sung for sport.", "I wrote them as a rite, for my own soul,", "and left the door ajar so you could hear.", "I do not play with the dark. I study it.", "Nothing here calls what you would not want near.", "Keep it so."], ["She was not summoned by my hand.", "She came on her own, after a rite that was not mine,", "a guide, and an evil one.", "She will seem sweet. She will seem kind.", "She will seem like nothing that could ever harm you.", "Wait.", "Invite her in, speak to her, play,", "and she will not leave.", "She stays, and the rooms of your life", "turn slowly into a living hell."], ["These words are the craft.", "Twist them, add to them, speak them where they were never meant to be,", "and it can go wrong.", "Do not run to God then.", "If he did not come before,", "why would he come now?"], ["If you must sit down at the board,", "learn first what it costs when it goes wrong.", "Ward yourself. Seek the ones who truly know,", "a real witch, a true seer.", "Do not walk into the flame", "believing you will walk back out."], ["In time, a page will open here:", "wards, and how they are made.", "Only those.", "Nothing that harms will be taught by me."], ["I hold no faith. Believe what you will.", "But keep my words out of what you wish to do.", "Cross this line, and you cross it alone.", "— M.A."]];
@@ -129,8 +130,11 @@
     </div>
     <button type="button" class="wg-hot wg-hot-altar" aria-label="Approach the altar"></button>
     <button type="button" class="wg-hot wg-hot-letter" aria-label="Open the sealed letter"></button>
+    <button type="button" class="wg-hot wg-hot-her" aria-label="Approach Ballerina to enter" aria-describedby="pbwg-her-hint" disabled></button>
     <p class="wg-lib-hint"><span>Touch the altar to approach</span></p>
+    <p class="wg-her-hint" id="pbwg-her-hint"><span>Approach her</span></p>
     <span class="wg-lib-vig" aria-hidden="true"></span>
+    <span class="wg-her-light" aria-hidden="true"></span>
   </div>
   <svg class="wg-defs" aria-hidden="true" width="0" height="0" style="position:absolute"><filter id="wg-rag" x="-40%" y="-40%" width="180%" height="180%"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
   <div class="wg-scroll" hidden><div class="wg-inner">
@@ -160,7 +164,7 @@
           <input type="checkbox" id="pbwg-ok" class="wg-check">
           <label for="pbwg-ok" class="wg-label"><span class="wg-wax" aria-hidden="true"></span><span class="wg-words">I have heard her. I will listen, and I will not ask her in.</span><span class="wg-line" aria-hidden="true"></span></label>
         </div>
-        <div class="wg-actions"><button type="button" class="btn btn-solid wg-enter" disabled aria-describedby="pbwg-hint">Enter</button><p class="wg-hint" id="pbwg-hint">Seal your mark above to open the door.</p></div>
+        <div class="wg-actions"><p class="wg-hint" id="pbwg-hint">Seal your mark above. She is the door.</p></div>
       </div>
     </article>
   </div></div>`;
@@ -168,11 +172,11 @@
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
   const mount = () => {
     timers.forEach(clearTimeout); timers = [];
-    d.innerHTML = tpl; d.classList.remove('is-signed', 'is-leaving', 'is-open', 'is-lettering', 'is-returning');
+    d.innerHTML = tpl; d.classList.remove('is-signed', 'is-leaving', 'is-open', 'is-lettering', 'is-returning', 'is-with-her', 'is-admitted');
     document.body.appendChild(d);
     root.classList.add('pb-gate-open');
     root.classList.remove('pb-gate');
-    const ok = d.querySelector('#pbwg-ok'), btn = d.querySelector('.wg-enter'), hint = d.querySelector('.wg-hint');
+    const ok = d.querySelector('#pbwg-ok'), hint = d.querySelector('.wg-hint');
     const stage = d.querySelector('.wg-stage'), env = d.querySelector('.wg-env'), sheet = d.querySelector('.wg-sheet');
     const ink = d.querySelector('.wg-ink'), after = d.querySelector('.wg-after'), title = d.querySelector('#pbwg-title');
     const kids = [...document.body.children].filter(e => e !== d && !e.hasAttribute('inert'));
@@ -215,9 +219,14 @@
     env.addEventListener('click', open);
     d.querySelector('.wg-cta').addEventListener('click', open);
     ok.addEventListener('change', () => {
-      btn.disabled = !ok.checked;
       d.classList.toggle('is-signed', ok.checked);
-      hint.textContent = ok.checked ? 'She heard you. The door is open.' : 'Seal your mark above to open the door.';
+      if (!ok.checked) {
+        if (hint) hint.textContent = 'Seal your mark above. She is the door.';
+        return;
+      }
+      ok.disabled = true;
+      if (hint) hint.textContent = 'She heard you. She is waiting.';
+      later(returnToHer, RM() ? 0 : 700);
     });
     const leaveGate = () => {
       kids.forEach(e => e.removeAttribute('inert'));
@@ -227,26 +236,45 @@
       if (RM()) rm(); else later(rm, 800);
       document.dispatchEvent(new CustomEvent('pb:warned'));
     };
-    const startOutro = () => {
+    const showHer = () => {
+      d.classList.remove('is-lettering', 'is-returning');
+      d.classList.add('is-with-her');
+      if (libRoot) {
+        libRoot.classList.remove('is-dim');
+        libRoot.setAttribute('data-lib', 'mid-her');
+      }
+      if (scroll) { scroll.hidden = true; scroll.setAttribute('inert', ''); }
+      inkSvg && inkSvg.classList.remove('is-shown');
+      if (herHint) herHint.classList.remove('is-gone');
+      if (herBtn) {
+        herBtn.disabled = false;
+        try { herBtn.focus({ preventScroll: true, focusVisible: false }); } catch (e) { herBtn.focus(); }
+      }
+    };
+    const returnToHer = () => {
+      if (d.classList.contains('is-returning') || d.classList.contains('is-with-her') || d.classList.contains('is-admitted')) return;
+      if (!ok.checked) return;
       d.classList.remove('is-lettering');
       d.classList.add('is-returning');
       if (libRoot) libRoot.classList.remove('is-dim');
       if (scroll) { scroll.hidden = false; scroll.style.pointerEvents = 'none'; }
       inkSvg && inkSvg.classList.remove('is-shown');
+      if (RM() || !libRoot) { showHer(); return; }
       later(() => libRoot && libRoot.setAttribute('data-lib', 'closing'), 180);
       later(() => libRoot && libRoot.setAttribute('data-lib', 'shut'), 1100);
       later(() => libRoot && libRoot.setAttribute('data-lib', 'to-her'), 2000);
-      later(() => libRoot && libRoot.setAttribute('data-lib', 'near'), 3900);
-      later(leaveGate, 5400);
+      later(showHer, 3900);
     };
-    const enter = () => {
-      if (!ok.checked) return;
+    const approachHer = () => {
+      if (!d.classList.contains('is-with-her') || d.classList.contains('is-admitted')) return;
+      d.classList.add('is-admitted');
+      if (herBtn) herBtn.disabled = true;
+      if (herHint) herHint.classList.add('is-gone');
       try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
-      btn.disabled = true;
       if (RM() || !libRoot) { leaveGate(); return; }
-      startOutro();
+      libRoot.setAttribute('data-lib', 'near');
+      later(leaveGate, 1700);
     };
-    btn.addEventListener('click', enter);
     // leaving for the wards page lowers the gate without signing it; any other page raises it again
     unmount = () => { timers.forEach(clearTimeout); timers = []; kids.forEach(e => e.removeAttribute('inert')); root.classList.remove('pb-gate-open'); d.remove(); };
     d.querySelectorAll('.pw-wards').forEach(a => a.addEventListener('click', () => unmount()));
@@ -273,6 +301,8 @@
     const scroll = d.querySelector('.wg-scroll');
     const altarBtn = d.querySelector('.wg-hot-altar');
     const letterBtn = d.querySelector('.wg-hot-letter');
+    const herBtn = d.querySelector('.wg-hot-her');
+    const herHint = d.querySelector('.wg-her-hint');
     const inkSvg = d.querySelector('.wg-book-ink');
     const revealLetter = () => {
       if (d.classList.contains('is-lettering')) return;
@@ -305,6 +335,7 @@
     };
     if (altarBtn) altarBtn.addEventListener('click', approach);
     if (letterBtn) letterBtn.addEventListener('click', revealLetter);
+    if (herBtn) herBtn.addEventListener('click', approachHer);
     try { altarBtn.focus({ preventScroll: true, focusVisible: false }); } catch (e) { altarBtn && altarBtn.focus(); }
   };
   // The wards page is protective only and is linked from the gate itself, so it opens without the gate;
