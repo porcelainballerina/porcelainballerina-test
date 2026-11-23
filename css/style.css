@@ -3800,11 +3800,8 @@ html.pb-gate-open,html.pb-gate-open body{overflow:hidden!important}
 .wg-line{display:block;height:2px;background:linear-gradient(90deg,#4a0b08,rgba(74,11,8,.25));align-self:start}
 .wg-check:checked+.wg-label .wg-words{color:#4a0b08}
 .wg-actions{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin-top:1.6rem}
-.wg-enter{min-width:12rem;font-size:1rem;letter-spacing:.32em}
-.wg-enter[disabled]{opacity:.45;cursor:not-allowed;filter:grayscale(.6)}
-.wg-enter:focus-visible{outline:3px solid #4a0b08;outline-offset:4px}
 .wg-hint{margin:0;font:italic .95rem/1.4 "Garamond",Georgia,serif;color:#3a2410}
-@media (max-width:699px){.pb-wg .wg-sheet .pw-seal{width:50px;height:57px}.pb-wg .wg-sheet .pw-title{padding-right:2.6rem}.wg-label{font-size:1rem}.wg-wax{width:46px;height:46px}.wg-enter{width:100%}}
+@media (max-width:699px){.pb-wg .wg-sheet .pw-seal{width:50px;height:57px}.pb-wg .wg-sheet .pw-title{padding-right:2.6rem}.wg-label{font-size:1rem}.wg-wax{width:46px;height:46px}}
 @media (prefers-reduced-motion:reduce){.pb-wg,.wg-wax,.wg-wax::after{transition:none}html.pb-gate::after{animation-delay:3s}}
 .pb-wg .wg-short .pw-l{margin-bottom:.32em}
 .pb-wg .wg-short .pw-l:first-child{font-family:"Grenze Gotisch",serif;font-style:normal;font-variant:normal;letter-spacing:.04em;font-size:1.7em;color:#4a0b08;margin-bottom:.25em}
@@ -3813,8 +3810,7 @@ html.pb-gate-open,html.pb-gate-open body{overflow:hidden!important}
 .pb-wg .wg-full-link:focus-visible{outline:3px solid #4a0b08;outline-offset:3px}
 .pb-wg .wg-full{margin-top:1.4rem!important;padding-top:1.2rem;border-top:1px solid rgba(74,11,8,.35)}
 .pb-wg .wg-full[hidden]{display:none}
-@media (max-width:699px){.pb-wg .wg-sheet .pw-title{padding:0 2.9rem!important;font-size:1.55rem!important}.pb-wg .wg-sheet .pw-seal{width:44px;height:50px;top:.7rem;right:.6rem}.wg-enter{justify-content:center;text-align:center}}
-.wg-enter{display:inline-flex;align-items:center;justify-content:center}
+@media (max-width:699px){.pb-wg .wg-sheet .pw-title{padding:0 2.9rem!important;font-size:1.55rem!important}.pb-wg .wg-sheet .pw-seal{width:44px;height:50px;top:.7rem;right:.6rem}}
 /* v36b frame friezes: FRONT PAGE ONLY. Same artwork + coordinates as corner-rich.webp (900 native = corner width),
    so the rules, thorn helix and bone bar continue the corners exactly. */
 :root{--fw:min(36vw,540px)}
@@ -7508,8 +7504,8 @@ body:has(.ms-envelope.is-open) .ma-mark{
 .pb-wg .wg-d .wg-wax::after{background:var(--seal) center/contain no-repeat;inset:-9px}
 .pb-wg .wg-d .wg-check:checked+.wg-label .wg-words{color:#4b0b06}
 .pb-wg .wg-d .wg-line{background:linear-gradient(90deg,rgba(75,11,6,.85),rgba(75,11,6,.15))}
-.pb-wg .wg-d .wg-enter{background:linear-gradient(180deg,#3a0905,#1c0302)!important;border:1px solid rgba(120,30,15,.8)!important;color:#d9c08f!important;font:400 .95rem/1 "Fell SC",serif!important;letter-spacing:.42em!important;box-shadow:inset 0 0 12px rgba(0,0,0,.6),0 2px 8px rgba(0,0,0,.4)!important}
-.pb-wg .wg-d .wg-enter::before,.pb-wg .wg-d .wg-enter::after{display:none!important}
+
+
 .pb-wg .wg-d .wg-hint{font:italic .92rem/1.4 "Fell",serif;color:rgba(40,20,8,.75)}
 .pb-wg .wg-sheet.is-unfold{transform-origin:50% 0;animation:wgUnfold 1.5s cubic-bezier(.22,.7,.2,1) both}
 .pb-wg .wg-sheet.is-unfold .wg-crease{animation:wgCrease 2.4s ease-out both}
