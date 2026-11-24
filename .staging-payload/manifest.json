@@ -1,0 +1,11 @@
+{
+  "files": [
+    "css/style.css",
+    "css/style.min.css",
+    "index.html"
+  ],
+  "copy_from_live": [],
+  "tar_sha256": "afd6d16415ee6739a48bb4a5f79c7a3b7ab2751510611a0ac8a3cb82a3164a3c",
+  "tar_bytes": 246002,
+  "note": "staging entrance hero title (no blood lettering)"
+}
