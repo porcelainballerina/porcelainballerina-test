@@ -7957,7 +7957,7 @@ html.pb-gate body { background: #050201 !important; }
   flex-direction: column !important;
   align-items: center !important;
   justify-content: flex-end !important;
-  bottom: 2.6% !important;
+  bottom: 4.8% !important;
   font: italic clamp(1.05rem, 1rem + 1.05vw, 1.48rem)/1.35 "Fell", "IM Fell English", Georgia, serif !important;
   letter-spacing: .12em !important;
   text-transform: none !important;
@@ -8001,13 +8001,13 @@ html.pb-gate body { background: #050201 !important; }
 .pb-wg.is-admitted .wg-her-hint { opacity: 0; }
 .pb-wg .wg-lib-latin {
   display: block;
-  margin-top: .4em;
-  font: italic clamp(.68rem, .62rem + .45vw, .92rem)/1.3 "Fell", "IM Fell English", Georgia, serif !important;
-  letter-spacing: .22em;
-  color: #c4a46a;
-  text-shadow: 0 0 16px #000, 0 1px 2px #000;
+  margin-top: .45em;
+  font: italic clamp(.8rem, .72rem + .55vw, 1.05rem)/1.3 "Fell", "IM Fell English", Georgia, serif !important;
+  letter-spacing: .16em;
+  color: #edd9ae !important;
+  text-shadow: 0 0 20px #000, 0 1px 3px #000, 0 0 6px #000, 0 2px 12px #000 !important;
   text-transform: none;
-  opacity: .88;
+  opacity: 1;
   max-width: min(34rem, 92vw);
   text-align: center;
 }
@@ -8022,8 +8022,10 @@ html.pb-gate body { background: #050201 !important; }
   .pb-wg .wg-lib-hint span,
   .pb-wg .wg-her-hint span { max-width: 90vw; }
   .pb-wg .wg-lib-latin {
-    letter-spacing: .14em;
-    font-size: clamp(.68rem, 3.2vw, .82rem) !important;
+    letter-spacing: .12em;
+    font-size: clamp(.78rem, 3.6vw, .95rem) !important;
+    color: #edd9ae !important;
+    opacity: 1;
   }
 }
 
@@ -8037,7 +8039,7 @@ html.pb-gate body { background: #050201 !important; }
 .wg-lib:not([data-lib]) .wg-hot-altar,
 .wg-lib[data-lib="dolly"] .wg-hot-altar,
 .wg-lib[data-lib="approach"] .wg-hot-altar {
-  left: 24%; top: 8%; width: 50%; height: 82%;
+  left: 16%; top: 8%; width: 58%; height: 82%;
 }
 .wg-lib[data-lib="open"] .wg-hot-letter,
 .wg-lib[data-lib="mid"] .wg-hot-letter {
@@ -8045,7 +8047,7 @@ html.pb-gate body { background: #050201 !important; }
 }
 .wg-lib[data-lib="mid-her"] .wg-hot-her,
 .pb-wg.is-with-her:not(.is-admitted) .wg-hot-her {
-  left: 28%; top: 8%; width: 36%; height: 82%;
+  left: 16%; top: 12%; width: 32%; height: 78%;
 }
 
 /* The warning folio must stay readable: a stained page in the dark, not a dark page. */

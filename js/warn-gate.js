@@ -28,7 +28,7 @@
   d.setAttribute('aria-label', 'A sealed door');
   const img = new URL('../images/gate/', SELF).href;
   const lib = new URL('../images/gate-library/', SELF).href;
-  const GATE_V = '1795582000';
+  const GATE_V = '1795594000';
   const plate = (name, cls, extra) => `<picture class="wg-plate-pic"><source media="(max-width:700px) and (orientation: portrait)" srcset="${lib}${name}-phone.webp?v=${GATE_V}"><img class="wg-plate ${cls}" src="${lib}${name}.webp?v=${GATE_V}" alt="" width="1920" height="1080" decoding="async"${extra || ''}></picture>`;
   d.setAttribute('style', `--alt:url('${img}altar-wide.webp');--alt-sm:url('${img}altar-wide-sm.webp');--alt-t:url('${img}altar-tall.webp');--circ:url('${img}circle.jpg');--circ-sm:url('${img}circle-sm.jpg');--corner:url('${img}corner.jpg')`);
   const tpl = `<svg class="wg-ink-defs" aria-hidden="true" focusable="false" width="0" height="0">
