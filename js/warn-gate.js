@@ -25,10 +25,10 @@
   const d = document.createElement('div');
   d.className = 'pb-wg';
   d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true');
-  d.setAttribute('aria-label', 'The library at the door');
+  d.setAttribute('aria-label', 'A sealed door');
   const img = new URL('../images/gate/', SELF).href;
   const lib = new URL('../images/gate-library/', SELF).href;
-  const GATE_V = '1795459000';
+  const GATE_V = '1795559000';
   const plate = (name, cls, extra) => `<img class="wg-plate ${cls}" src="${lib}${name}.webp?v=${GATE_V}" alt="" width="1920" height="1080" decoding="async"${extra || ''}>`;
   d.setAttribute('style', `--alt:url('${img}altar-wide.webp');--alt-sm:url('${img}altar-wide-sm.webp');--alt-t:url('${img}altar-tall.webp');--circ:url('${img}circle.jpg');--circ-sm:url('${img}circle-sm.jpg');--corner:url('${img}corner.jpg')`);
   const tpl = `<svg class="wg-ink-defs" aria-hidden="true" focusable="false" width="0" height="0">
@@ -130,10 +130,10 @@
   </g>
 </svg>
     </div>
-    <button type="button" class="wg-hot wg-hot-altar" aria-label="Approach the altar"></button>
+    <button type="button" class="wg-hot wg-hot-altar" aria-label="Approach the sealed door"></button>
     <button type="button" class="wg-hot wg-hot-letter" aria-label="Open the sealed letter"></button>
     <button type="button" class="wg-hot wg-hot-her" aria-label="Approach Ballerina to enter" aria-describedby="pbwg-her-hint" disabled></button>
-    <p class="wg-lib-hint"><span>Touch the altar to approach</span></p>
+    <p class="wg-lib-hint"><span>The door is sealed</span></p>
     <p class="wg-her-hint" id="pbwg-her-hint"><span>Approach her</span></p>
     <span class="wg-lib-vig" aria-hidden="true"></span>
     <span class="wg-her-light" aria-hidden="true"></span>
