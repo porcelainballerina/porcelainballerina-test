@@ -7877,17 +7877,23 @@ html.pb-gate body { background: #050201 !important; }
   mix-blend-mode: screen;
 }
 
-/* First words: an inscription, not a tutorial prompt. */
+/* First words: an inscription, not a tutorial prompt.
+   Do not force .wg-her-hint visible — it must stay hidden until she is the door. */
 .pb-wg .wg-lib-hint,
 .pb-wg .wg-her-hint {
   bottom: 8.2% !important;
   font: italic clamp(1.02rem, 1.1rem + 1.1vw, 1.42rem)/1.35 "Fell", "IM Fell English", Georgia, serif !important;
-  letter-spacing: .22em !important;
+  letter-spacing: .16em !important;
   text-transform: none !important;
   color: #e8d4a8 !important;
   text-shadow: 0 0 22px #000, 0 1px 2px #000, 0 0 3px #000 !important;
-  opacity: .9;
 }
+.pb-wg .wg-her-hint { opacity: 0; }
+.wg-lib[data-lib="mid-her"] .wg-her-hint,
+.pb-wg.is-with-her:not(.is-admitted) .wg-her-hint:not(.is-gone) { opacity: .9; }
+.pb-wg .wg-her-hint.is-gone,
+.wg-lib[data-lib="near"] .wg-her-hint,
+.pb-wg.is-admitted .wg-her-hint { opacity: 0; }
 .pb-wg .wg-lib-hint span::before,
 .pb-wg .wg-lib-hint span::after,
 .pb-wg .wg-her-hint span::before,
@@ -8038,4 +8044,75 @@ html.pb-gate body { background: #050201 !important; }
   .hero.hero-folio .lead,
   .hero.hero-folio .hero-terms { font-size: 1.02rem; color: #e2d2b0; }
 }
+
+/* Beat later legacy typography (!important red ink, blood drips, boxed stamp). */
+.hero.hero-folio .title-fraktur {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: #f3e6cc !important;
+  color: #f3e6cc !important;
+  text-shadow: 0 2px 0 rgba(0,0,0,.7), 0 0 28px rgba(0,0,0,.7) !important;
+  filter: none !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  letter-spacing: .01em !important;
+}
+.hero.hero-folio .hero-whisper {
+  font: italic clamp(1.15rem, 1rem + 1.1vw, 1.55rem)/1.4 "Fell", Georgia, serif !important;
+  letter-spacing: .04em !important;
+  text-transform: none !important;
+  color: #f0e2c4 !important;
+  text-shadow: 0 1px 2px #000, 0 0 18px #000 !important;
+}
+.hero.hero-folio .hero-stamp {
+  border: 0 !important;
+  outline: none !important;
+  rotate: 0deg !important;
+  transform: none !important;
+  color: #c9a46e !important;
+  background: none !important;
+  padding: 0 !important;
+  text-shadow: none !important;
+  font: italic 0.92rem/1.3 "Fell", Georgia, serif !important;
+  letter-spacing: .14em !important;
+  text-transform: none !important;
+}
+.hero.hero-folio .hero-file {
+  color: #c4a46a !important;
+}
+.hero.hero-folio .lead,
+.hero.hero-folio .hero-terms {
+  color: #d8c7a4 !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.9) !important;
+}
+/* Sit the words in the dark left of the open book, not over the page. */
+.hero.hero-folio .wrap.hero-copy {
+  margin-left: 0;
+  margin-right: auto;
+  max-width: 38rem;
+  width: min(38rem, 92%);
+}
+/* The moon slider and similar chrome feel like a game HUD on a threshold. Hide them here only. */
+.hero.hero-folio .moon-phase,
+body.at-hero .moon-phase.mp-hero { display: none !important; }
+
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .hero.hero-folio {
+    align-items: flex-end;
+  }
+  .hero.hero-folio .wrap.hero-copy {
+    max-width: none;
+    width: 100%;
+    padding: 4.2rem 0 3.2rem;
+  }
+  .hero.hero-folio .title-fraktur {
+    font-size: clamp(2.3rem, 1rem + 8vw, 3.3rem) !important;
+  }
+  .hero.hero-folio .lead {
+    margin-bottom: .7rem;
+  }
+  .hero.hero-folio .hero-terms { margin-bottom: 1.2rem; }
+}
+
 /* ---- /entrance redesign ---- */
