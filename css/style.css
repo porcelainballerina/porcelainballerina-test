@@ -7861,19 +7861,43 @@ html.pb-gate,
 html.pb-gate body { background: #050201 !important; }
 .pb-wg { background: #050201 !important; }
 .pb-wg .wg-lib { background: #050201; }
-.pb-wg .wg-lib-stage { filter: saturate(.92) contrast(1.06); }
+.pb-wg .wg-lib-stage { filter: saturate(.88) contrast(1.08) brightness(.92); overflow: hidden; }
 
-/* Deeper threshold: a quiet gold breath on the door, then heavy dark at the edges. */
+/* Deeper threshold: a quiet gold breath on her and the seal, then heavy dark at the edges. */
 .pb-wg .wg-lib-vig {
   background:
-    radial-gradient(ellipse 34% 40% at 50% 40%, rgba(198, 158, 88, .14), transparent 58%),
-    radial-gradient(ellipse 70% 64% at 50% 48%, transparent 28%, rgba(0, 0, 0, .62) 78%, rgba(0, 0, 0, .92) 100%) !important;
+    radial-gradient(ellipse 30% 38% at 46% 42%, rgba(198, 158, 88, .10), transparent 58%),
+    radial-gradient(ellipse 68% 62% at 50% 48%, transparent 20%, rgba(0, 0, 0, .74) 74%, rgba(0, 0, 0, .96) 100%) !important;
   z-index: 2;
+}
+
+/* Slow candle-smoke at the edges. Pointer events stay off so the door remains the target. */
+.pb-wg .wg-lib-stage::after {
+  content: "";
+  position: absolute;
+  inset: -8% 0 0 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 20% 46% at 12% 86%, rgba(210, 185, 150, .12), transparent 70%),
+    radial-gradient(ellipse 20% 46% at 88% 86%, rgba(210, 185, 150, .10), transparent 70%),
+    radial-gradient(ellipse 36% 40% at 50% 96%, rgba(180, 150, 110, .08), transparent 70%);
+  mix-blend-mode: screen;
+  opacity: .65;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pb-wg .wg-lib-stage::after {
+    animation: pb-gate-smoke 16s ease-in-out infinite alternate;
+  }
+  @keyframes pb-gate-smoke {
+    from { opacity: .42; transform: translateY(0); }
+    to { opacity: .78; transform: translateY(-3%); }
+  }
 }
 
 /* When she is the door, a more solemn, pale-gold presence — not a flash. */
 .pb-wg .wg-her-light {
-  background: radial-gradient(ellipse 26% 40% at 50% 42%, rgba(232, 210, 160, .26), rgba(160, 100, 40, .07) 46%, transparent 74%) !important;
+  background: radial-gradient(ellipse 26% 42% at 44% 44%, rgba(232, 210, 160, .22), rgba(160, 100, 40, .06) 46%, transparent 74%) !important;
   mix-blend-mode: screen;
 }
 
@@ -7913,7 +7937,7 @@ html.pb-gate body { background: #050201 !important; }
 .wg-lib:not([data-lib]) .wg-hot-altar,
 .wg-lib[data-lib="dolly"] .wg-hot-altar,
 .wg-lib[data-lib="approach"] .wg-hot-altar {
-  left: 28%; top: 10%; width: 44%; height: 76%;
+  left: 24%; top: 8%; width: 50%; height: 82%;
 }
 .wg-lib[data-lib="open"] .wg-hot-letter,
 .wg-lib[data-lib="mid"] .wg-hot-letter {
@@ -7921,7 +7945,7 @@ html.pb-gate body { background: #050201 !important; }
 }
 .wg-lib[data-lib="mid-her"] .wg-hot-her,
 .pb-wg.is-with-her:not(.is-admitted) .wg-hot-her {
-  left: 36%; top: 26%; width: 28%; height: 60%;
+  left: 28%; top: 8%; width: 36%; height: 82%;
 }
 
 /* The warning folio must stay readable: a stained page in the dark, not a dark page. */
