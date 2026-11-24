@@ -1,7 +1,7 @@
-// Porcelain Ballerina service worker. Build 1795544460.
+// Porcelain Ballerina service worker. Build 1795545886.
 // Pages and data: network first (always the newest build when online), cache only as an offline fallback.
-// Versioned files (?v=1795544460): cache first. Every new build gets a new cache; old caches are deleted.
-const BUILD = '1795544460';
+// Versioned files (?v=1795545886): cache first. Every new build gets a new cache; old caches are deleted.
+const BUILD = '1795545886';
 const CACHE = 'pb-' + BUILD;
 self.addEventListener('install', (e) => { self.skipWaiting(); });
 self.addEventListener('activate', (e) => {

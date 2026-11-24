@@ -7861,56 +7861,137 @@ html.pb-gate,
 html.pb-gate body { background: #050201 !important; }
 .pb-wg { background: #050201 !important; }
 .pb-wg .wg-lib { background: #050201; }
-.pb-wg .wg-lib-stage { filter: saturate(.88) contrast(1.08) brightness(.92); overflow: hidden; }
+.pb-wg .wg-lib-stage { filter: saturate(1.02) contrast(1.05); overflow: hidden; }
+.pb-wg .wg-plate-pic {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0;
+}
+.pb-wg .wg-plate-pic .wg-plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
-/* Deeper threshold: a quiet gold breath on her and the seal, then heavy dark at the edges. */
+/* Portrait phones use a 9:16 plate: the stage must match, or object-fit will crop the new framing. */
+@media (max-width: 700px) and (orientation: portrait) {
+  .pb-wg .wg-lib-stage {
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+/* A light edge, not a brown fog over the door. */
 .pb-wg .wg-lib-vig {
   background:
-    radial-gradient(ellipse 30% 38% at 46% 42%, rgba(198, 158, 88, .10), transparent 58%),
-    radial-gradient(ellipse 68% 62% at 50% 48%, transparent 20%, rgba(0, 0, 0, .74) 74%, rgba(0, 0, 0, .96) 100%) !important;
+    radial-gradient(ellipse 32% 36% at 50% 42%, rgba(198, 158, 88, .05), transparent 62%),
+    radial-gradient(ellipse 86% 80% at 50% 50%, transparent 50%, rgba(0, 0, 0, .36) 86%, rgba(0, 0, 0, .76) 100%) !important;
   z-index: 2;
 }
 
-/* Slow candle-smoke at the edges. Pointer events stay off so the door remains the target. */
-.pb-wg .wg-lib-stage::after {
+/* Candle flicker (warm points) and a little rising smoke. Pointer events stay off. */
+.pb-wg .wg-lib-stage::before {
   content: "";
   position: absolute;
-  inset: -8% 0 0 0;
+  inset: 0;
   pointer-events: none;
   z-index: 2;
   background:
-    radial-gradient(ellipse 20% 46% at 12% 86%, rgba(210, 185, 150, .12), transparent 70%),
-    radial-gradient(ellipse 20% 46% at 88% 86%, rgba(210, 185, 150, .10), transparent 70%),
-    radial-gradient(ellipse 36% 40% at 50% 96%, rgba(180, 150, 110, .08), transparent 70%);
+    radial-gradient(ellipse 11% 16% at 12% 86%, rgba(255, 160, 70, .20), transparent 70%),
+    radial-gradient(ellipse 11% 16% at 88% 86%, rgba(255, 150, 60, .16), transparent 70%),
+    radial-gradient(ellipse 14% 16% at 50% 44%, rgba(200, 90, 50, .08), transparent 70%);
   mix-blend-mode: screen;
-  opacity: .65;
+  opacity: .7;
+}
+.pb-wg .wg-lib-stage::after {
+  content: "";
+  position: absolute;
+  inset: -6% 0 0 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 18% 40% at 12% 84%, rgba(210, 185, 150, .08), transparent 70%),
+    radial-gradient(ellipse 18% 40% at 88% 84%, rgba(210, 185, 150, .06), transparent 70%);
+  mix-blend-mode: screen;
+  opacity: .5;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .pb-wg .wg-lib-stage::after {
-    animation: pb-gate-smoke 16s ease-in-out infinite alternate;
+  .pb-wg .wg-lib-stage::before { animation: pb-gate-flicker 2.8s ease-in-out infinite; }
+  .pb-wg .wg-lib-stage::after { animation: pb-gate-smoke 18s ease-in-out infinite alternate; }
+  @keyframes pb-gate-flicker {
+    0%, 100% { opacity: .52; }
+    35% { opacity: .82; }
+    52% { opacity: .58; }
+    76% { opacity: .9; }
   }
   @keyframes pb-gate-smoke {
-    from { opacity: .42; transform: translateY(0); }
-    to { opacity: .78; transform: translateY(-3%); }
+    from { opacity: .32; transform: translateY(0); }
+    to { opacity: .58; transform: translateY(-2.5%); }
   }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pb-wg .wg-lib-stage::before,
+  .pb-wg .wg-lib-stage::after { animation: none !important; }
 }
 
 /* When she is the door, a more solemn, pale-gold presence — not a flash. */
 .pb-wg .wg-her-light {
-  background: radial-gradient(ellipse 26% 42% at 44% 44%, rgba(232, 210, 160, .22), rgba(160, 100, 40, .06) 46%, transparent 74%) !important;
+  background: radial-gradient(ellipse 26% 42% at 48% 44%, rgba(232, 210, 160, .16), rgba(160, 100, 40, .05) 46%, transparent 74%) !important;
   mix-blend-mode: screen;
 }
 
-/* First words: an inscription, not a tutorial prompt.
-   Do not force .wg-her-hint visible — it must stay hidden until she is the door. */
+/* Inscription: always centered, rule above the line, Latin beneath. No side-rules that overflow on a phone. */
 .pb-wg .wg-lib-hint,
 .pb-wg .wg-her-hint {
-  bottom: 8.2% !important;
-  font: italic clamp(1.02rem, 1.1rem + 1.1vw, 1.42rem)/1.35 "Fell", "IM Fell English", Georgia, serif !important;
-  letter-spacing: .16em !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 5vw !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  bottom: 6.2% !important;
+  font: italic clamp(1.05rem, 1rem + 1.05vw, 1.48rem)/1.35 "Fell", "IM Fell English", Georgia, serif !important;
+  letter-spacing: .12em !important;
   text-transform: none !important;
-  color: #e8d4a8 !important;
-  text-shadow: 0 0 22px #000, 0 1px 2px #000, 0 0 3px #000 !important;
+  color: #f0dfb8 !important;
+  text-shadow: 0 0 22px #000, 0 1px 2px #000, 0 0 4px #000, 0 2px 12px #000 !important;
+}
+.pb-wg .wg-lib-hint:not(.is-gone),
+.pb-wg .wg-her-hint:not(.is-gone) { transform: none !important; }
+.pb-wg .wg-lib-hint span,
+.pb-wg .wg-her-hint span {
+  display: block !important;
+  position: relative;
+  padding: .55em 0 0 !important;
+  max-width: min(34rem, 92vw);
+  text-align: center;
+  letter-spacing: inherit;
+}
+.pb-wg .wg-lib-hint span::before,
+.pb-wg .wg-her-hint span::before {
+  content: "" !important;
+  display: block !important;
+  width: 5.5em;
+  height: 1px;
+  margin: 0 auto .55em;
+  background: linear-gradient(90deg, transparent, #c4a46a, transparent) !important;
+  opacity: .7;
+}
+.pb-wg .wg-lib-hint span::after,
+.pb-wg .wg-her-hint span::after {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  margin: 0 !important;
+  background: none !important;
 }
 .pb-wg .wg-her-hint { opacity: 0; }
 .wg-lib[data-lib="mid-her"] .wg-her-hint,
@@ -7918,13 +7999,32 @@ html.pb-gate body { background: #050201 !important; }
 .pb-wg .wg-her-hint.is-gone,
 .wg-lib[data-lib="near"] .wg-her-hint,
 .pb-wg.is-admitted .wg-her-hint { opacity: 0; }
-.pb-wg .wg-lib-hint span::before,
-.pb-wg .wg-lib-hint span::after,
-.pb-wg .wg-her-hint span::before,
-.pb-wg .wg-her-hint span::after {
-  width: 3.2em;
-  opacity: .55;
-  background: linear-gradient(90deg, transparent, #c4a46a, transparent) !important;
+.pb-wg .wg-lib-latin {
+  display: block;
+  margin-top: .4em;
+  font: italic clamp(.68rem, .62rem + .45vw, .92rem)/1.3 "Fell", "IM Fell English", Georgia, serif !important;
+  letter-spacing: .22em;
+  color: #c4a46a;
+  text-shadow: 0 0 16px #000, 0 1px 2px #000;
+  text-transform: none;
+  opacity: .88;
+  max-width: min(34rem, 92vw);
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .pb-wg .wg-lib-hint,
+  .pb-wg .wg-her-hint {
+    bottom: 5.6% !important;
+    padding: 0 7vw !important;
+    letter-spacing: .06em !important;
+    font-size: clamp(1.05rem, 5.2vw, 1.22rem) !important;
+  }
+  .pb-wg .wg-lib-hint span,
+  .pb-wg .wg-her-hint span { max-width: 90vw; }
+  .pb-wg .wg-lib-latin {
+    letter-spacing: .14em;
+    font-size: clamp(.68rem, 3.2vw, .82rem) !important;
+  }
 }
 
 /* Hotspots stay large and usable, but they must not look like a click-adventure. */
